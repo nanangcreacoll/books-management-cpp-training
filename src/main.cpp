@@ -30,12 +30,10 @@ typedef struct
 }date;
 
 //classes
-#include "class/books.hpp"
-
+#include "books.hpp"
 
 int main()
 {
     cout << "hello world" << endl;
-
     return 0;
 }
