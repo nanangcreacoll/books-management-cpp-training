@@ -30,6 +30,7 @@ string query;
 #include "class/suppliers/suppliers.hpp"
 #include "class/purchases/purchases.hpp"
 #include "class/members/members.hpp"
+#include "class/sales/sales.hpp"
 
 
 int main()
