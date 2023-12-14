@@ -74,7 +74,29 @@ void books::update_price()
 
 void books::search()
 {
+    cout << "\nBook Search" << endl;
+    cout << "\tBook id for details: ";
+    cin >> id;
 
+    stmt.str("");
+    stmt << "SELECT * FROM books WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    res_set = mysql_store_result(conn); 
+    
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "\nThe Details of Book Id " << row[0] << endl;
+        cout << "The Name of the book is: " << row[1] << endl;
+        cout << "The Author of " << row[1] << " is " << row[2] << endl;
+        cout << "The price of the book is " << row[3] << endl;
+        cout << "The inventory count is " << row[4] << endl;
+    }
+    else
+    {
+        cout << "No record found" << endl;
+    }
 }
 
 void books::update()
