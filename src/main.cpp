@@ -22,12 +22,8 @@ stringstream stmt;
 const char* q;
 string query;
 
-typedef struct
-{
-    int date;
-    int month;
-    int year;
-}date;
+//struct
+#include "dateStruct.hpp"
 
 //classes
 #include "books.hpp"
