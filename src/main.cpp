@@ -26,7 +26,7 @@ string query;
 #include "dateStruct.hpp"
 
 //classes
-#include "books.hpp"
+#include "class/books/books.hpp"
 #include "suppliers.hpp"
 
 
