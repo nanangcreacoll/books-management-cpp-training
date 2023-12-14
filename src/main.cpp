@@ -27,8 +27,8 @@ string query;
 
 //classes
 #include "class/books/books.hpp"
-
 #include "class/suppliers/suppliers.hpp"
+#include "class/purchases/purchases.hpp"
 
 
 int main()
