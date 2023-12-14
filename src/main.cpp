@@ -31,6 +31,8 @@ typedef struct
 
 //classes
 #include "books.hpp"
+#include "suppliers.hpp"
+
 
 int main()
 {
