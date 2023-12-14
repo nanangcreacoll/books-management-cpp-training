@@ -7,7 +7,7 @@
 #include <mysql/mysql.h>
 
 //struct
-#include "dateStruct.hpp"
+#include "../../dateStruct.hpp"
 
 using namespace std;
 
