@@ -32,7 +32,6 @@ string query;
 #include "class/members/members.hpp"
 #include "class/sales/sales.hpp"
 
-
 int main()
 {
     cout << "hello world" << endl;

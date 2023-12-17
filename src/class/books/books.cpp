@@ -101,7 +101,39 @@ void books::search()
 
 void books::update()
 {
+    int b_id[100], qty[100], i=0, max;
     
+    stmt.str("");
+    stmt << "SELECT book_id, qty FROM purchases WHERE recives = 'T' AND inv IS NULL;";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    res_set = mysql_store_result(conn);
+    
+    stmt.str("");
+    stmt << "UPDATE purchases SET inv = 1 WHERE recives = 'T' AND inv IS NULL;";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    
+    while ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        b_id[i] = (int) row[0];
+        qty[i] = (int) row[1];
+        i++;
+    }
+    
+    max = i;
+    for (i = 0; i <= max; i++)
+    {
+        stmt.str("");
+        stmt << "UPDATE books SET qty = " << qty[i] << " WHERE id = " << b_id[i] << ";";
+        query = stmt.str();
+        q = query.c_str();
+        mysql_query(conn, q);
+    }
+
+    cout << "The orders received have been updated." << endl;
 }
 
 void books::display()
