@@ -1,2 +1,9 @@
 /.vscode
-/bin/objects
+/bin
+
+*.o
+*.a
+*.so
+
+*.exe
+*.out
