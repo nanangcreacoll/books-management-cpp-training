@@ -7,6 +7,7 @@
 
 // Definition
 #define HOST "127.0.0.1"
+#define MYSQL_USER "root"
 #define MYSQL_PASS "creacoll"
 #define DATABASE "book-management"
 #define MYSQL_PORT 3306
@@ -34,6 +35,9 @@ string query;
 
 int main()
 {
-    cout << "hello world" << endl;
+    //pass();
+    conn = mysql_init(0);
+    conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, 0);
+
     return 0;
 }
