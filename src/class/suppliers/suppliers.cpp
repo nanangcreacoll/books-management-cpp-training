@@ -26,3 +26,37 @@ void suppliers::add_sup()
     else
         cout << endl << endl << "ERROR ENTRY!" << endl << "Contact Technical Team." << endl << endl << endl;
 }
+
+void suppliers::remove_supplier()
+{
+    cout << "Remove Supplier" << endl;
+    cout << "Supplier id: ";
+    cin >> id;
+    stmt.str("");
+    stmt << "DELETE FROM suppliers WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    cout << "Supplier Removed." << endl;
+}
+
+void suppliers::search_id()
+{
+    cout << "Search Supplier Details by Id" << endl;
+    cout << "Supplier id: ";
+    cin >> id;
+    stmt.str("");
+    stmt << "SELECT * FROM suppliers WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set) != NULL))
+    {
+        cout << "Detail of Supplier Id: " << row[0] << endl;
+        cout << "Name: " << row[1] << endl;
+        cout << "Phone Number: " << row[2] << endl;
+    }
+    
+}
