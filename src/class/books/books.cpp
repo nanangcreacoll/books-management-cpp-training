@@ -118,8 +118,8 @@ void books::update()
     
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        b_id[i] = (int) row[0];
-        qty[i] = (int) row[1];
+        b_id[i] = stoi(row[0]);
+        qty[i] = stoi(row[1]);
         i++;
     }
     
