@@ -39,5 +39,7 @@ int main()
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
 
+    cout << "Hello World!" << endl;
+
     return 0;
 }
