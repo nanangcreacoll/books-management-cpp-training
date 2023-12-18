@@ -2,15 +2,16 @@
 
 void suppliers::add_sup()
 {
-    cout << "Enter the Supplier Name: ";
+    cout << "Add Supplier" << endl;
+    cout << "Supplier Name: ";
     cin >> name;
-    cout << "Enter Phone number: ";
+    cout << "Phone number: ";
     cin >> phone_num;
-    cout << "Enter the address (in 3 lines, 3rd line is the city): ";
+    cout << "Address (in 3 lines, 3rd line is the city): ";
     cin >> addr_line1;
     cin >> addr_line2;
     cin >> addr_city;
-    cout << "Enter State: ";
+    cout << "State: ";
     cin >> addr_state;
     
     stmt.str("");
