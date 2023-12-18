@@ -138,5 +138,17 @@ void books::update()
 
 void books::display()
 {
-
+    int i = 0;
+    query = "SELECT * FROM books"; 
+    q = query.c_str();
+    mysql_query(conn, q);
+    res_set = mysql_store_result(conn);
+    while ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Name for book " << i++ << " : " << row[1] << endl;
+        cout << "Name of Author: " << row[2] << endl;
+        cout << "Price: " << row[3] << endl;
+        cout << "Quantity: " << row[4] << endl;
+        cout << endl << endl << endl << endl;
+    }
 }
