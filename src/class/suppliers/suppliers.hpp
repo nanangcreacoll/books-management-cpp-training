@@ -8,6 +8,13 @@
 
 using namespace std;
 
+extern stringstream stmt;
+extern MYSQL *conn;
+extern MYSQL_RES *res_set;
+extern MYSQL_ROW row;
+extern const char* q;
+extern string query;
+
 class suppliers
 {
     int id;
