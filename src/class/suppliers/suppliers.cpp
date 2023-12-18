@@ -52,11 +52,17 @@ void suppliers::search_id()
     mysql_query(conn, q);
     res_set = mysql_store_result(conn);
 
-    if ((row = mysql_fetch_row(res_set) != NULL))
+    if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Detail of Supplier Id: " << row[0] << endl;
         cout << "Name: " << row[1] << endl;
         cout << "Phone Number: " << row[2] << endl;
+        cout << "Address: " << row[3] << " " << row[4] << endl;
+        cout << "City: " << row[5] << endl;
+        cout << "State: " << row[6] << endl;
     }
-    
+    else
+    {
+        cout << "No supplier found!" << endl;
+    }
 }
