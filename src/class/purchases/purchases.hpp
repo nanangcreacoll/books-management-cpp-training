@@ -1,8 +1,8 @@
 #ifndef __PURCHASES
 #define __PURCHASES
 
-#include <string>
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <mysql/mysql.h>
 
@@ -10,6 +10,13 @@
 #include "../../dateStruct.hpp"
 
 using namespace std;
+
+extern MYSQL *conn;
+extern MYSQL_RES *res_set;
+extern MYSQL_ROW row;
+extern stringstream stmt;
+extern const char* q;
+extern string query;
 
 class purchases
 {
