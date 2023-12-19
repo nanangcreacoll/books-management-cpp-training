@@ -24,7 +24,7 @@ void purchases::new_ord()
 void purchases::mark_reciv()
 {
     cout << "Order Recieved Mark" << endl;
-    cout << "order id";
+    cout << "Order id: ";
     cin >> order_id;
     
     stmt.str("");
