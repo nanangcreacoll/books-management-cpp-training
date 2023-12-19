@@ -20,3 +20,18 @@ void purchases::new_ord()
 
     cout << "New order added!" << endl;
 }
+
+void purchases::mark_reciv()
+{
+    cout << "Order Recieved Mark" << endl;
+    cout << "order id";
+    cin >> order_id;
+    
+    stmt.str("");
+    stmt << "UPDATE purchases SET recieved = 'T' WHERE order_id = " << order_id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    
+    cout << "Recieved marked successfully!" << endl;
+}
