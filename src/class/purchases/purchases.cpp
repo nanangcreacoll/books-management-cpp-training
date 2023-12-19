@@ -32,6 +32,21 @@ void purchases::mark_reciv()
     query = stmt.str();
     q = query.c_str();
     mysql_query(conn, q);
-    
+
     cout << "Recieved marked successfully!" << endl;
+}
+
+void purchases::mark_cancel()
+{
+    cout << "Order Cancelled Mark" << endl;
+    cout << "Order id: ";
+    cin >> order_id;
+    
+    stmt.str("");
+    stmt << "UPDATE purchases SET recieved = 'C' WHERE order_id = " << order_id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+
+    cout << "Cancelled marked successfully" << endl;
 }
