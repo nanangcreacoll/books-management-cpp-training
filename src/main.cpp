@@ -23,9 +23,6 @@ stringstream stmt;
 const char* q;
 string query;
 
-//struct
-#include "dateStruct.hpp"
-
 //classes
 #include "class/books/books.hpp"
 #include "class/suppliers/suppliers.hpp"
