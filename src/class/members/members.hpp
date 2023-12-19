@@ -13,7 +13,7 @@ using namespace std;
 
 class members
 {
-    int id;
+    int id; //primary key
     string name;
     string addr_line1;
     string addr_line2;

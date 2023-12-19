@@ -17,7 +17,7 @@ extern string query;
 
 class suppliers
 {
-    int id;
+    int id; //primary key
     string name;
     long int phone_num;
     string addr_line1;

@@ -20,13 +20,13 @@ extern string query;
 
 class purchases
 {
-    int order_id;
-    int book_id;
-    int sup_id;
+    int order_id; //primary key
+    int book_id; //FK ref (books)
+    int sup_id; //FK ref (supply)
     int qty;
     date dt_ordered;
     int estim_deliv;
-    char received;
+    char received; //check(T or C or F) def (F)
     int inv;
 
 public:

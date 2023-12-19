@@ -17,7 +17,7 @@ extern string query;
 
 class books
 {
-    int id;
+    int id;  //primary key
     string name;
     string author;
     int price;

@@ -13,9 +13,9 @@ using namespace std;
 
 class sales
 {
-    int invoice_id;
-    int member_id;
-    int book_id;
+    int invoice_id; //primary key
+    int member_id; //FK ref member(id)
+    int book_id; //FK ref books(id)
     int qty;
     int amount;
     date date_sales;

@@ -13,7 +13,7 @@ using namespace std;
 
 class employees
 {
-    int id;
+    int id; //primary key
     string name;
     string addr_line1;
     string addr_line2;
@@ -22,7 +22,7 @@ class employees
     long int phone_num;
     date date_of_joining;
     long int salary;
-    string mgr_status;
+    string mgr_status; //check(T or F) def f
 
 public:
     void add_emp();
