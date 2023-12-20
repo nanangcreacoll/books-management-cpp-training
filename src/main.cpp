@@ -9,7 +9,7 @@
 #define HOST "127.0.0.1"
 #define MYSQL_USER "root"
 #define MYSQL_PASS ""
-#define DATABASE "book-management"
+#define DATABASE "book_management"
 #define MYSQL_PORT 3306
 #define PASSWORD ""
 
