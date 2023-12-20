@@ -90,3 +90,31 @@ void employees::assign_mgr_status()
     cout << "Manager status granted!" << endl << endl << endl;
 }
 
+void employees::search_emp()
+{
+    cout << "Employee Search" << endl;
+    cout << "Employee id: ";
+    cin >> id;
+
+    stmt.str(""); 
+    stmt << "SELECT * FROM employees WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    
+    res_set = mysql_store_result(conn);
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Employee Details" << endl;
+        cout << "Name: " << row[1] << endl;
+        cout << "Address: " << row[2] << " " << row[3] << ", " << row[4] << endl;
+        cout << "State: " << row[5] << endl;
+        cout << "Phone number: " << row[6] << endl;
+        cout << "Date of joining: " << row[7] << endl;
+        cout << "Salary: " << row[8] << endl << endl << endl;
+    }
+    else
+    {
+        cout << "No employee found!" << endl << endl << endl;
+    }
+}
