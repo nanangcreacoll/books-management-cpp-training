@@ -11,6 +11,13 @@
 
 using namespace std;
 
+extern MYSQL *conn;
+extern MYSQL_RES *res_set;
+extern MYSQL_ROW row;
+extern stringstream stmt;
+extern const char* q;
+extern string query;
+
 class employees
 {
     int id; //primary key
