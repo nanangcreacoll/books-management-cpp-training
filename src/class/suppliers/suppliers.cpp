@@ -2,16 +2,16 @@
 
 void suppliers::add_sup()
 {
-    cout << "Add Supplier" << endl;
-    cout << "Supplier Name: ";
+    cout << "\nAdd Supplier" << endl;
+    cout << "\tSupplier Name: ";
     cin >> name;
-    cout << "Phone number: ";
+    cout << "\tPhone number: ";
     cin >> phone_num;
-    cout << "Address (in 3 lines, 3rd line is the city): ";
+    cout << "\tAddress (in 3 lines, 3rd line is the city): ";
     cin >> addr_line1;
     cin >> addr_line2;
     cin >> addr_city;
-    cout << "State: ";
+    cout << "\tState: ";
     cin >> addr_state;
     
     stmt.str("");
@@ -29,8 +29,8 @@ void suppliers::add_sup()
 
 void suppliers::remove_supplier()
 {
-    cout << "Remove Supplier" << endl;
-    cout << "Supplier id: ";
+    cout << "\nRemove Supplier" << endl;
+    cout << "\tSupplier id: ";
     cin >> id;
     stmt.str("");
     stmt << "DELETE FROM suppliers WHERE id = " << id << ";";
@@ -42,8 +42,8 @@ void suppliers::remove_supplier()
 
 void suppliers::search_id()
 {
-    cout << "Search Supplier Details by Id" << endl;
-    cout << "Supplier id: ";
+    cout << "\nSearch Supplier Details by Id" << endl;
+    cout << "\tSupplier id: ";
     cin >> id;
     stmt.str("");
     stmt << "SELECT * FROM suppliers WHERE id = " << id << ";";
@@ -54,12 +54,12 @@ void suppliers::search_id()
 
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "Detail of Supplier Id: " << row[0] << endl;
-        cout << "Name: " << row[1] << endl;
-        cout << "Phone Number: " << row[2] << endl;
-        cout << "Address: " << row[3] << " " << row[4] << endl;
-        cout << "City: " << row[5] << endl;
-        cout << "State: " << row[6] << endl;
+        cout << "\tDetail of Supplier Id: " << row[0] << endl;
+        cout << "\tName: " << row[1] << endl;
+        cout << "\tPhone Number: " << row[2] << endl;
+        cout << "\tAddress: " << row[3] << " " << row[4] << endl;
+        cout << "\tCity: " << row[5] << endl;
+        cout << "\tState: " << row[6] << endl;
     }
     else
     {
