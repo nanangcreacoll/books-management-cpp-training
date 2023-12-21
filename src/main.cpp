@@ -32,6 +32,7 @@ string query;
 
 // Functions
 void pass();
+void main_menu();
 void book_menu();
 void supplier_menu();
 void purchase_menu();
@@ -77,4 +78,63 @@ void pass()
         exit(1);
     }
     return;
+}
+
+void main_menu()
+{
+    int c;
+
+	cout << "*************************************************" << endl;
+	cout << "         BOOK SHOP MANGEMENT SYSTEM" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. BOOKS" << endl;
+	cout << "\t2. SUPPLIERS" << endl;
+	cout << "\t3. PURCHASES" << endl;
+	cout << "\t4. EMPLOYEES" << endl;
+	cout << "\t5. MEMBERS" << endl;
+	cout << "\t6. SALES" << endl;
+	cout << "\t7. EXIT" << endl << endl << endl;
+	cout << "Enter Your Choice: ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			system("cls");
+			book_menu();
+			getch();
+			break;
+		case 2:
+			system("cls");
+			supplier_menu();
+			getch();
+			break;
+		case 3:
+			system("cls");
+			purchase_menu();
+			getch();
+			break;
+		case 4:
+			system("cls");
+			employee_menu();
+			getch();
+			break;
+		case 5:
+			system("cls");
+			member_menu();
+			getch();
+			break;
+		case 6:
+			system("cls");
+			sale_menu();
+			getch();
+			break;
+		case 7:
+			exit(1);
+		default:
+			system("cls");
+			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
+			getch();
+			break;
+	}
+	return;
 }
