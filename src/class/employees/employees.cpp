@@ -2,8 +2,8 @@
 
 void employees::add_emp()
 {
-    cout << "Add Employees" << endl;
-    cout << "Enter your id for verification: ";
+    cout << "\nAdd Employees" << endl;
+    cout << "\tEnter your id for verification: ";
     cin >> id;
 
     stmt.str("");
@@ -28,18 +28,18 @@ void employees::add_emp()
         }
     }
 
-    cout << "Details of New Employees" << endl;
-    cout << "Name: ";
+    cout << "\nDetails of New Employees" << endl;
+    cout << "\tName: ";
     cin >> name;
-    cout << "Address (in 3 lines, 3rd line is the city): ";
+    cout << "\tAddress (in 3 lines, 3rd line is the city): ";
     cin >> addr_line1;
     cin >> addr_line2;
     cin >> addr_city;
-    cout << "State: ";
+    cout << "\tState: ";
     cin >> addr_state;
-    cout << "Phone number: ";
+    cout << "\tPhone number: ";
     cin >> phone_num;
-    cout << "Salary: ";
+    cout << "\tSalary: ";
     cin >> salary;
     
     stmt.str(""); 
@@ -52,8 +52,8 @@ void employees::add_emp()
 
 void employees::assign_mgr_status()
 {
-    cout << "Assign Manager Status" << endl;
-    cout << "Enter your id for verification: ";
+    cout << "\nAssign Manager Status" << endl;
+    cout << "\tEnter your id for verification: ";
     cin >> id;
 
     stmt.str("");
@@ -78,7 +78,7 @@ void employees::assign_mgr_status()
         }
     }
 
-    cout << "Employee id to grant Manager status: ";
+    cout << "\tEmployee id to grant Manager status: ";
     cin >> id;
 
     stmt.str("");
@@ -92,8 +92,8 @@ void employees::assign_mgr_status()
 
 void employees::search_emp()
 {
-    cout << "Employee Search" << endl;
-    cout << "Employee id: ";
+    cout << "\nEmployee Search" << endl;
+    cout << "\tEmployee id: ";
     cin >> id;
 
     stmt.str(""); 
@@ -105,13 +105,13 @@ void employees::search_emp()
     res_set = mysql_store_result(conn);
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "Employee Details" << endl;
-        cout << "Name: " << row[1] << endl;
-        cout << "Address: " << row[2] << " " << row[3] << ", " << row[4] << endl;
-        cout << "State: " << row[5] << endl;
-        cout << "Phone number: " << row[6] << endl;
-        cout << "Date of joining: " << row[7] << endl;
-        cout << "Salary: " << row[8] << endl << endl << endl;
+        cout << "\nEmployee Details" << endl;
+        cout << "\tName: " << row[1] << endl;
+        cout << "\tAddress: " << row[2] << " " << row[3] << ", " << row[4] << endl;
+        cout << "\tState: " << row[5] << endl;
+        cout << "\tPhone number: " << row[6] << endl;
+        cout << "\tDate of joining: " << row[7] << endl;
+        cout << "\tSalary: " << row[8] << endl << endl << endl;
     }
     else
     {
@@ -121,6 +121,7 @@ void employees::search_emp()
 
 void employees::display()
 {
+    cout << "\nEmployees Display" << endl;
     int i = 0;
     query = "SELECT * FROM employees;";
     q = query.c_str();
@@ -131,13 +132,13 @@ void employees::display()
     {
         do
         {
-            cout << "Employees Details, No." << ++i << endl;
-            cout << "Name: " << row[1] << endl;
-            cout << "Address: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
-            cout << "State: " << row[5] << endl;
-            cout << "Phone number: " << row[6] << endl;
-            cout << "Date of joining: " << row[7] << endl;
-            cout << "Salary: " << row[8] << endl;
+            cout << "\nEmployees Details, No." << ++i << endl;
+            cout << "\tName: " << row[1] << endl;
+            cout << "\tAddress: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
+            cout << "\tState: " << row[5] << endl;
+            cout << "\tPhone number: " << row[6] << endl;
+            cout << "\tDate of joining: " << row[7] << endl;
+            cout << "\tSalary: " << row[8] << endl;
             cout << endl << endl << endl;
         } while (row = mysql_fetch_row(res_set));
     }
