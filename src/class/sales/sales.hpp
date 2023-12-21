@@ -5,11 +5,20 @@
 #include <iostream>
 #include <sstream>
 #include <mysql/mysql.h>
+#include <conio.h>
+
+
+using namespace std;
 
 //struct
 #include "../../dateStruct.hpp"
 
-using namespace std;
+extern MYSQL *conn;
+extern MYSQL_RES *res_set;
+extern MYSQL_ROW row;
+extern stringstream stmt;
+extern const char* q;
+extern string query;
 
 class sales
 {
