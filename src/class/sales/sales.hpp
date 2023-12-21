@@ -1,5 +1,5 @@
-#ifndef __MEMBER
-#define __MEMBER
+#ifndef __SALES
+#define __SALES
 
 #include <string>
 #include <iostream>
