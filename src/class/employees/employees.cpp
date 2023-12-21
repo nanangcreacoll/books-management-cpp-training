@@ -118,3 +118,31 @@ void employees::search_emp()
         cout << "No employee found!" << endl << endl << endl;
     }
 }
+
+void employees::display()
+{
+    int i = 0;
+    query = "SELECT * FROM employees;";
+    q = query.c_str();
+    mysql_query(conn, q);
+
+    res_set = mysql_store_result(conn);
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        do
+        {
+            cout << "Employees Details, No." << ++i << endl;
+            cout << "Name: " << row[1] << endl;
+            cout << "Address: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
+            cout << "State: " << row[5] << endl;
+            cout << "Phone number: " << row[6] << endl;
+            cout << "Date of joining: " << row[7] << endl;
+            cout << "Salary: " << row[8] << endl;
+            cout << endl << endl << endl;
+        } while (row = mysql_fetch_row(res_set));
+    }
+    else
+    {
+        cout << "Employees not found" << endl;
+    }
+}
