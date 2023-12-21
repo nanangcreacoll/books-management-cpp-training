@@ -42,14 +42,14 @@ void books::update_price()
     
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "Book name: " << row[0] << endl;
-        cout << "Current price of the book: " << row[1] << endl;
-        cout << "Do yout want to update the price? [y/n]: ";
+        cout << "\tBook name: " << row[0] << endl;
+        cout << "\tCurrent price of the book: " << row[1] << endl;
+        cout << "\tDo yout want to update the price? [y/n]: ";
         cin >> choice;
         
         if (choice == 121 || choice == 89)
         {
-            cout << "New price: ";
+            cout << "\tNew price: ";
             cin >> price;
 
             stmt.str("");
@@ -88,10 +88,10 @@ void books::search()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "\nThe Details of Book Id " << row[0] << endl;
-        cout << "The Name of the book is: " << row[1] << endl;
-        cout << "The Author of " << row[1] << " is " << row[2] << endl;
-        cout << "The price of the book is " << row[3] << endl;
-        cout << "The inventory count is " << row[4] << endl;
+        cout << "\tThe Name of the book is: " << row[1] << endl;
+        cout << "\tThe Author of " << row[1] << " is " << row[2] << endl;
+        cout << "\tThe price of the book is " << row[3] << endl;
+        cout << "\tThe inventory count is " << row[4] << endl;
     }
     else
     {
@@ -145,10 +145,10 @@ void books::display()
     res_set = mysql_store_result(conn);
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "Name for book " << i++ << " : " << row[1] << endl;
-        cout << "Name of Author: " << row[2] << endl;
-        cout << "Price: " << row[3] << endl;
-        cout << "Quantity: " << row[4] << endl;
+        cout << "\tName for book " << i++ << " : " << row[1] << endl;
+        cout << "\tName of Author: " << row[2] << endl;
+        cout << "\tPrice: " << row[3] << endl;
+        cout << "\tQuantity: " << row[4] << endl;
         cout << endl << endl << endl << endl;
     }
 }
