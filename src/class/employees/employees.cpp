@@ -147,3 +147,21 @@ void employees::display()
         cout << "Employees not found" << endl;
     }
 }
+
+void employees::update_salary()
+{
+    cout << "\nEmployees Update Salary" << endl;
+    cout << "\tEmployee id: ";
+    cin >> id;
+    cout << "\tEnter updated salaray: ";
+    cin >> salary;
+    
+    stmt.str("");
+    stmt << "UPDATE employees SET salary = " << salary << "WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+    cout << endl << endl << endl;
+    cout << "Salary update successfully" << endl;
+    cout << endl << endl << endl;
+}
