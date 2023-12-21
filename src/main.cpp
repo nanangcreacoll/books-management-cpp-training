@@ -8,7 +8,7 @@
 // Definition
 #define HOST "127.0.0.1"
 #define MYSQL_USER "root"
-#define MYSQL_PASS ""
+#define MYSQL_PASS "creacoll"
 #define DATABASE "book_management"
 #define MYSQL_PORT 3306
 #define PASSWORD 12345
@@ -46,8 +46,20 @@ int main()
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
 
-    cout << "Hello World!" << endl;
-
+    if (conn)
+    {
+        while (1)
+        {
+            system("clear");
+            main_menu();
+        }
+    }
+    else
+    {
+        system("clear");
+        cout << "Error while connecting to database." << endl << "Contact tech expert." << endl;
+		getch();
+    }
     return 0;
 }
 
@@ -99,42 +111,72 @@ void main_menu()
 	switch (c)
 	{
 		case 1:
-			system("cls");
+			system("clear");
 			book_menu();
 			getch();
 			break;
 		case 2:
-			system("cls");
+			system("clear");
 			supplier_menu();
 			getch();
 			break;
 		case 3:
-			system("cls");
+			system("clear");
 			purchase_menu();
 			getch();
 			break;
 		case 4:
-			system("cls");
+			system("clear");
 			employee_menu();
 			getch();
 			break;
 		case 5:
-			system("cls");
+			system("clear");
 			member_menu();
 			getch();
 			break;
 		case 6:
-			system("cls");
+			system("clear");
 			sale_menu();
 			getch();
 			break;
 		case 7:
 			exit(1);
 		default:
-			system("cls");
+			system("clear");
 			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
 			getch();
 			break;
 	}
 	return;
+}
+
+void book_menu() 
+{
+
+}
+
+void supplier_menu()
+{
+
+}
+
+void purchase_menu()
+{
+
+}
+
+void employee_menu()
+{
+
+}
+
+void member_menu()
+{
+
+}
+
+void sale_menu()
+{
+
 }
