@@ -138,6 +138,7 @@ void books::update()
 
 void books::display()
 {
+    cout << "\nBooks Display" << endl;
     int i = 0;
     query = "SELECT * FROM books"; 
     q = query.c_str();
