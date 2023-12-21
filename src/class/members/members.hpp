@@ -1,15 +1,23 @@
-#ifndef __MEMBER
-#define __MEMBER
+#ifndef __MEMBERS
+#define __MEMBERS
 
 #include <string>
 #include <iostream>
 #include <sstream>
 #include <mysql/mysql.h>
 
+
+using namespace std;
+
 //struct
 #include "../../dateStruct.hpp"
 
-using namespace std;
+extern MYSQL *conn;
+extern MYSQL_RES *res_set;
+extern MYSQL_ROW row;
+extern stringstream stmt;
+extern const char* q;
+extern string query;
 
 class members
 {
