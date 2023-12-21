@@ -5,8 +5,6 @@
 #include <iostream>
 #include <sstream>
 #include <mysql/mysql.h>
-#include <conio.h>
-
 
 using namespace std;
 

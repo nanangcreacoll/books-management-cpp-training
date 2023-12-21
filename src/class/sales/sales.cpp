@@ -25,7 +25,7 @@ void sales::add()
     else
     {
         cout << "Book id invalid!" << endl;
-        getch();
+        cin.get();
         return;
     }
 
