@@ -33,3 +33,10 @@ void members::add_member()
     cout << "\tMember id: " << row[0] << endl;
     cout << endl << endl << endl;
 }
+
+void members::refresh()
+{
+    query = "UPDATE members SET valid = 'invalid' WHERE end_date <= curdate();";
+    q = query.c_str();
+    mysql_query(conn, q);
+}
