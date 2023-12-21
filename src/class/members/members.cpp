@@ -40,3 +40,33 @@ void members::refresh()
     q = query.c_str();
     mysql_query(conn, q);
 }
+
+void members::search_member()
+{
+    cout << "\nMembers Search" << endl;
+    cout << "\tMember id: ";
+    cin >> id;
+    
+    stmt.str("");
+    stmt << "SELECT * FROM members WHERE id = " << id << ";";
+    query = stmt.str();
+    q = query.c_str();
+    mysql_query(conn, q);
+
+    res_set = mysql_store_result(conn);
+    if ((row = mysql_fetch_row(res_set)) !=  NULL)
+    {
+        cout << "\nMember Details" << endl;
+        cout << "\tName: " << row[1] << endl;
+        cout << "\tAddres: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
+        cout << "\tState: " << row[5] << endl;
+        cout << "\tPhone number: " << row[6] << endl;
+        cout << "\tMembership begin date: " << row[7] << endl;
+        cout << "\tMembership end date: " << row[8] << endl;
+        cout << "\tMembership status: " << row[9] << endl;
+    }
+    else
+    {
+        cout << "\nNo member found!" << endl << endl << endl;
+    }
+}
