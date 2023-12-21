@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <mysql/mysql.h>
+#include <limits>
 
 using namespace std;
 

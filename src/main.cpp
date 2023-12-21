@@ -3,6 +3,7 @@
 #include <string>
 #include <mysql/mysql.h>
 #include <sstream>
+#include <limits>
 
 // Definition
 #define HOST "127.0.0.1"
