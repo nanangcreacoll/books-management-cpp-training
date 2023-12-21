@@ -15,7 +15,7 @@ void members::add_member()
     cin >> addr_state;
 
     stmt.str("");
-    stmt << "INSERT INTO members(name, addr_line1, addr_line2, addr_city, addr_state, phone_num, beg_date, end_date) VALUES('" << name << "', '"  << addr_line1 << "', '"  << addr_line2 << "', '" << addr_city << "', '" << addr_state << "', " << phone_num << ", curdate(), Date_add(curdate(), INTERVAL 1 YEAR));";
+    stmt << "INSERT INTO members(name, addr_line1, addr_line2, addr_city, addr_state, phone_num, beg_date, end_date, valid) VALUES('" << name << "', '"  << addr_line1 << "', '"  << addr_line2 << "', '" << addr_city << "', '" << addr_state << "', " << phone_num << ", curdate(), Date_add(curdate(), INTERVAL 1 YEAR), 'valid');";
     query = stmt.str();
     q = query.c_str();
     mysql_query(conn, q);
