@@ -140,7 +140,7 @@ void employees::display()
             cout << "\tDate of joining: " << row[7] << endl;
             cout << "\tSalary: " << row[8] << endl;
             cout << endl << endl << endl;
-        } while (row = mysql_fetch_row(res_set));
+        } while ((row = mysql_fetch_row(res_set)) != NULL);
     }
     else
     {
