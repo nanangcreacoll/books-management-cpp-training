@@ -52,3 +52,16 @@ void sales::add()
         cout << "The entered details maybe wrong." << endl << "Please recheck and enter again" << endl << endl << endl;
     }
 }
+
+void sales::find_total_sales()
+{
+    query = "SELECT SUM(amount) FROM sales WHERE year(date_sales) = year(curdate());";
+    q = query.c_str();
+    mysql_query(conn, q);
+
+    res_set = mysql_store_result(conn);
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Total sales this year: " << row[0] << endl << endl << endl;
+    }
+}
