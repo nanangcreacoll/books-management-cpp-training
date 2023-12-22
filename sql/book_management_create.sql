@@ -83,3 +83,10 @@ CREATE TABLE sales
     FOREIGN KEY (member_id) REFERENCES members(id),
     FOREIGN KEY (book_id) REFERENCES books(id)
 );
+
+CREATE TABLE admin
+(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);

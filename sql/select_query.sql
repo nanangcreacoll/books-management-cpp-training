@@ -11,3 +11,5 @@ SELECT * FROM purchases;
 SELECT * FROM members;
 
 SELECT * FROM sales;
+
+SELECT * FROM admin;

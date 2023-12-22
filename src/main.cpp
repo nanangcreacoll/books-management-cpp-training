@@ -3,7 +3,8 @@
 #include <string>
 #include <mysql/mysql.h>
 #include <sstream>
-#include <conio.h>
+#include <termios.h>
+#include <unistd.h>
 
 // Definition
 #define HOST "127.0.0.1"
@@ -11,13 +12,12 @@
 #define MYSQL_PASS "creacoll"
 #define DATABASE "book_management"
 #define MYSQL_PORT 3306
-#define PASSWORD 12345
 
 using namespace std;
 
 //Global Variable
-MYSQL *conn;
-MYSQL_RES *res_set;
+MYSQL* conn;
+MYSQL_RES* res_set;
 MYSQL_ROW row;
 stringstream stmt;
 const char* q;
@@ -29,9 +29,12 @@ string query;
 #include "class/purchases/purchases.hpp"
 #include "class/members/members.hpp"
 #include "class/sales/sales.hpp"
+#include "class/admin/admin.hpp"
+#include "class/database_seeders/database_seeders.hpp"
 
 // Functions
-void pass();
+string get_password();
+void login_menu();
 void main_menu();
 void book_menu();
 void supplier_menu();
@@ -42,12 +45,16 @@ void sale_menu();
 
 int main()
 {
-    pass();
+    //pass();
+	system("clear");
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
 
     if (conn)
     {
+		database_seeders seeding;
+		login_menu();
+
         while (1)
         {
             system("clear");
@@ -58,38 +65,99 @@ int main()
     {
         system("clear");
         cout << "Error while connecting to database." << endl << "Contact tech expert." << endl;
-		getch();
+		cin.get();
     }
     return 0;
 }
 
-void pass()
-{
-    int num = 0;
-    cout << "Password: ";
+string get_password() {
+	cin.get();
+    string password;
 
-    for (int i = 0; i < 5; i++)
-    {
-        char pass_input = getch();
-        //cin >> pass_input;
-        num = num * 10 + (pass_input - '0');
-        cout << "*";
-    }
-    
-    if (num == PASSWORD)
-    {
-        cout << endl << endl << "Correct password!" << endl << endl;
-        cout << "Press any key ...";
-        getch();
-    }
-    else
-    {
-        cout << endl << endl << "Incorrect password!" << endl << endl;
-        cout << "Press any key ...";
-        getch();
-        exit(1);
-    }
-    return;
+    termios oldt;
+    tcgetattr(STDIN_FILENO, &oldt);
+	termios newt = oldt;
+    newt.c_lflag &= ~ECHO;
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    getline(cin, password);
+	
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &oldt);
+
+    return password;
+}
+
+void login_menu()
+{
+	int c;
+	string input_username;
+	string input_password;
+
+	admin administrator;
+
+	cout << "\nLOGIN TO BOOK SHOP MANAGEMENT SYSTEM" << endl;
+	cout << "\t1. Login" << endl;
+	cout << "\t2. Add Admin" << endl;
+	cout << "\t3. Exit" << endl << endl << endl;
+	cout << "Enter your choice: ";
+	cin >> c;
+
+	switch (c)
+	{
+	case 1:
+		system("clear");
+		cout << "\tUsername: ";
+		cin >> input_username;
+		cout << "\tPassword: ";
+		input_password = get_password();
+
+		if (administrator.login(input_username, input_password))
+		{
+			cout << endl << endl << "Valid login." << endl << endl;
+			cout << "Press any key ...";
+			cin.get();
+		}
+		else
+		{
+			cout << endl << endl << "Username or password is not valid." << endl << endl;
+			cout << "Press any key ...";
+			cin.get();
+			login_menu();
+		}
+		break;
+	case 2:
+		system("clear");
+		cout << "\tUsername: ";
+		cin >> input_username;
+		cout << "\tPassword: ";
+		input_password = get_password();
+
+		if (administrator.login(input_username, input_password))
+		{
+			cout << endl << endl << "Valid login." << endl << endl;
+			cout << "Press any key ...";
+			cin.get();
+			system("clear");
+			administrator.add();
+			cin.get();
+			login_menu();
+		}
+		else
+		{
+			cout << endl << endl << "Username or password is not valid." << endl << endl;
+			cout << "Press any key ...";
+			cin.get();
+			login_menu();
+		}
+		break;
+	case 3:
+		exit(1);
+	default:
+		system("clear");
+		cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
+		cin.get();
+		break;
+	}
 }
 
 void main_menu()
@@ -113,39 +181,39 @@ void main_menu()
 		case 1:
 			system("clear");
 			book_menu();
-			getch();
+			cin.get();
 			break;
 		case 2:
 			system("clear");
 			supplier_menu();
-			getch();
+			cin.get();
 			break;
 		case 3:
 			system("clear");
 			purchase_menu();
-			getch();
+			cin.get();
 			break;
 		case 4:
 			system("clear");
 			employee_menu();
-			getch();
+			cin.get();
 			break;
 		case 5:
 			system("clear");
 			member_menu();
-			getch();
+			cin.get();
 			break;
 		case 6:
 			system("clear");
 			sale_menu();
-			getch();
+			cin.get();
 			break;
 		case 7:
 			exit(1);
 		default:
 			system("clear");
 			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
-			getch();
+			cin.get();
 			break;
 	}
 	return;
