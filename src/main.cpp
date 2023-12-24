@@ -259,22 +259,23 @@ void book_menu()
 {
 	int c;
 	books b;
+
+	cout << "Admin: " << admin_username << endl;
 	cout << "*************************************************" << endl;
 	cout << "                  BOOK MENU" << endl;
 	cout << "*************************************************" << endl;
-	cout << "   1. ADD" << endl;
-	cout << "   2. UPDATE PRICE" << endl;
-	cout << "   3. SEARCH" << endl;
-	cout << "   4. UPDATE STATUS" << endl;
-	cout << "   5. DISPLAY ALL" << endl;
-	cout << "   6. RETURN TO MAIN MENU" << endl << endl << endl;
-	cout << "Enter Your Choice : ";
+	cout << "\t1. ADD" << endl;
+	cout << "\t2. UPDATE PRICE" << endl;
+	cout << "\t3. SEARCH" << endl;
+	cout << "\t4. UPDATE STATUS" << endl;
+	cout << "\t5. DISPLAY ALL" << endl;
+	cout << "\t6. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice: ";
 	cin >> c;
 	switch (c)
 	{
 		case 1:
 			b.add();
-			cin.get();
 			break;
 		case 2:
 			b.update_price();

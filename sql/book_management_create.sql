@@ -39,11 +39,14 @@ CREATE TABLE purchases
     qty INT,
     dt_ordered DATE,
     estim_deliv DATE,
-    received CHAR,
+    recieved CHAR,
     inv INT,
     FOREIGN KEY (book_id) REFERENCES books(id),
     FOREIGN KEY (sup_id) REFERENCES suppliers(id)
 );
+
+ALTER TABLE purchases
+    RENAME COLUMN recieved to received;
 
 --employees
 CREATE TABLE employees

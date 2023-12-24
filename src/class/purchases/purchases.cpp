@@ -13,7 +13,7 @@ void purchases::new_ord()
     cin >> estim_deliv;
     
     stmt.str("");
-    stmt << "INSERT INTO purchases (book_id, sup_id, qty, dt_ordered, estim_deliv) VALUES(" << book_id << ", " << sup_id << ", " << qty << ", curdate(), Date_add(curdate(), INTERVAL " << estim_deliv << " DAY));";
+    stmt << "INSERT INTO purchases (book_id, sup_id, qty, dt_ordered, estim_deliv, recieved) VALUES(" << book_id << ", " << sup_id << ", " << qty << ", curdate(), Date_add(curdate(), INTERVAL " << estim_deliv << " DAY), 'F');";
     query = stmt.str();
     q = query.c_str();
     mysql_query(conn, q);

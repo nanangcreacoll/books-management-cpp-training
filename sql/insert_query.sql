@@ -18,7 +18,7 @@ values(
     'Caturtunggal',
     'Sleman',
     'DI Yogyakarta',
-    convert(numeric(12,0),rand() * 899999999999) + 100000000000,
+    LPAD(FLOOR(RAND() * 999999999999), 12, '0'),
     CURDATE(),
     2320000,
     'F'
@@ -36,22 +36,15 @@ INSERT INTO members(
     valid
 ) 
 values(
-    'Maria',
-    'Jalan Siliwangi no. 31',
-    'LLBK',
-    'Kupang',
+    'Ivan',
+    'Jalan Istana no. 32',
+    'Soe',
+    'Timur Tengah Selatan',
     'Nusa Tenggara Timur',
-    62832013485321,
+    LPAD(FLOOR(RAND() * 999999999999), 12, '0'),
     CURDATE(),
     Date_add(curdate(), INTERVAL 1 YEAR),
     'valid'
-);
-
-INSERT INTO purchases(
-
-) 
-values(
-
 );
 
 INSERT INTO sales() values();
@@ -65,12 +58,12 @@ INSERT INTO suppliers(
     addr_state
 ) 
 values(
-    'Gramedia',
-    6283754219832,
-    'Jalan Pemuda no. 42',
-    'Kuanino', 
-    'Kupang',
-    'Nusa Tenggara Timur'
+    'CV. Tirta Buana Media',
+    LPAD(FLOOR(RAND() * 999999999999), 12, '0'),
+    'Perumahan Tirta Buana Blok H No. 33',
+    'Cepor, Sendangtirto, Berbah', 
+    'Sleman',
+    'DI. Yogyakarta'
 );
 
 INSERT INTO purchases(
@@ -98,10 +91,10 @@ INSERT INTO sales(
     date_sales
 )
 VALUES (
-    1,
-    4,
     2,
-    82000,
+    6,
+    5,
+    580000,
     CURDATE()
 );
 

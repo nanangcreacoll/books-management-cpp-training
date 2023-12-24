@@ -4,25 +4,37 @@ void books::add()
 {
     cout << "\nAdd Book Data" << endl;
     cout << "\tName: ";
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
     cout << "\tAuthor: ";
-    cin >> author;
+    getline(cin, author);
     cout << "\tPrice: ";
     cin >> price;
+    cin.ignore();
     cout << "\tQuantity received: ";
     cin >> qty;
-    
+    cin.ignore();
+
     stmt.str("");
-    stmt << "INSERT INTO books(name,author,price,qty) values('" << name << "','" << author << "'," << price << "," << qty << ");";
+    stmt << "INSERT INTO books (name, author, price, qty) VALUES (\"" << name << "\", '" << author << "', " << price << ", " << qty << ");";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
     res_set = mysql_store_result(conn);
 
     if (!(res_set))
+    {
         cout << endl << endl << "Book Record Inserted Successfully" << endl << endl << endl;
-    else 
+    }
+    else
+    {
         cout << endl << endl << "Entry ERROR !" << endl << "Contact Technical Team " << endl << endl << endl;
+    }
 }
 
 void books::update_price()
@@ -36,7 +48,11 @@ void books::update_price()
     stmt << "SELECT name, price FROM books WHERE id = " << id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
     res_set = mysql_store_result(conn);
     
@@ -53,7 +69,15 @@ void books::update_price()
             cin >> price;
 
             stmt.str("");
-            stmt << "UPDATE books SET price = " << price << "WHERE id = " << id << ";";
+            stmt << "UPDATE books SET price = " << price << " WHERE id = " << id << ";";
+            query = stmt.str();
+            q = query.c_str();
+            
+            if (mysql_query(conn, q)) {
+                cout << "Query Error: " << mysql_error(conn) << endl;
+                return;
+            }
+
             res_set = mysql_store_result(conn);
 
             if (!(res_set))
@@ -87,11 +111,11 @@ void books::search()
     
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\nThe Details of Book Id " << row[0] << endl;
+        cout << "\tThe Details of Book Id: " << row[0] << endl;
         cout << "\tThe Name of the book is: " << row[1] << endl;
-        cout << "\tThe Author of " << row[1] << " is " << row[2] << endl;
-        cout << "\tThe price of the book is " << row[3] << endl;
-        cout << "\tThe inventory count is " << row[4] << endl;
+        cout << "\tThe Author of: " << row[1] << " is " << row[2] << endl;
+        cout << "\tThe price of the book is: " << row[3] << endl;
+        cout << "\tThe inventory count is: " << row[4] << endl;
     }
     else
     {
@@ -102,19 +126,34 @@ void books::search()
 void books::update()
 {
     int b_id[100], qty[100], i=0, max;
+    bool updated = false;
     
     stmt.str("");
-    stmt << "SELECT book_id, qty FROM purchases WHERE recives = 'T' AND inv IS NULL;";
+    stmt << "SELECT book_id, qty FROM purchases WHERE received = 'T' AND inv IS NULL;";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+    
     res_set = mysql_store_result(conn);
+
+    if (!res_set) {
+        cout << "Result set is NULL." << endl;
+        return;
+    }
     
     stmt.str("");
-    stmt << "UPDATE purchases SET inv = 1 WHERE recives = 'T' AND inv IS NULL;";
+    stmt << "UPDATE purchases SET inv = 1 WHERE received = 'T' AND inv IS NULL;";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
@@ -127,13 +166,32 @@ void books::update()
     for (i = 0; i <= max; i++)
     {
         stmt.str("");
-        stmt << "UPDATE books SET qty = " << qty[i] << " WHERE id = " << b_id[i] << ";";
+        stmt << "UPDATE books SET qty = (qty + " << qty[i] << ") WHERE id = " << b_id[i] << ";";
         query = stmt.str();
         q = query.c_str();
-        mysql_query(conn, q);
+        
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+        else 
+        {
+            if (mysql_affected_rows(conn) > 0)
+            {
+                updated = true;
+            }
+        }
     }
 
-    cout << "The orders received have been updated." << endl;
+    if (updated)
+    {
+        cout << "The orders received have been updated." << endl;
+    }
+    else
+    {
+        cout << "No updates were made." << endl;
+    }
 }
 
 void books::display()
@@ -147,6 +205,7 @@ void books::display()
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "\tName for book " << ++i << " : " << row[1] << endl;
+        cout << "\tId for book: " << row[0] << endl;
         cout << "\tName of Author: " << row[2] << endl;
         cout << "\tPrice: " << row[3] << endl;
         cout << "\tQuantity: " << row[4] << endl;
