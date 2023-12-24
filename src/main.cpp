@@ -45,7 +45,6 @@ void sale_menu();
 
 int main()
 {
-    //pass();
 	system("clear");
     conn = mysql_init(0);
     conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
@@ -95,10 +94,12 @@ void login_menu()
 
 	admin administrator;
 
-	cout << "\nLOGIN TO BOOK SHOP MANAGEMENT SYSTEM" << endl;
-	cout << "\t1. Login" << endl;
-	cout << "\t2. Add Admin" << endl;
-	cout << "\t3. Exit" << endl << endl << endl;
+	cout << "*************************************************" << endl;
+	cout << "         			LOGIN MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. LOGIN" << endl;
+	cout << "\t2. ADD ADMIN" << endl;
+	cout << "\t3. EXIT" << endl << endl << endl;
 	cout << "Enter your choice: ";
 	cin >> c;
 
@@ -111,20 +112,24 @@ void login_menu()
 		cout << "\tPassword: ";
 		input_password = get_password();
 
-		if (administrator.login(input_username, input_password))
+		administrator.login(input_username, input_password);
+
+		if (bool logged_in = administrator.get_is_logged_in())
 		{
 			cout << endl << endl << "Valid login." << endl << endl;
 			cout << "Press any key ...";
-			cin.get();
+    		cin.get();
+			break;
 		}
 		else
 		{
 			cout << endl << endl << "Username or password is not valid." << endl << endl;
 			cout << "Press any key ...";
-			cin.get();
+    		cin.get();
+			system("clear");
 			login_menu();
+			break;
 		}
-		break;
 	case 2:
 		system("clear");
 		cout << "\tUsername: ";
@@ -132,30 +137,44 @@ void login_menu()
 		cout << "\tPassword: ";
 		input_password = get_password();
 
-		if (administrator.login(input_username, input_password))
+		administrator.login(input_username, input_password);
+
+		if (bool logged_in = administrator.get_is_logged_in())
 		{
 			cout << endl << endl << "Valid login." << endl << endl;
 			cout << "Press any key ...";
 			cin.get();
 			system("clear");
 			administrator.add();
+			cin.clear();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    		cin.get();
+			system("clear");
+			administrator.logout();
 			cin.get();
+			system("clear");
 			login_menu();
+			break;
 		}
 		else
 		{
 			cout << endl << endl << "Username or password is not valid." << endl << endl;
 			cout << "Press any key ...";
-			cin.get();
+    		cin.get();
+			system("clear");
 			login_menu();
+			break;
 		}
-		break;
 	case 3:
 		exit(1);
 	default:
 		system("clear");
 		cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
-		cin.get();
+		cin.clear();
+    	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    	cin.get();
+		system("clear");
+		login_menu();
 		break;
 	}
 }
@@ -164,16 +183,21 @@ void main_menu()
 {
     int c;
 
+	admin administrator;
+	string admin_username = administrator.get_username();
+
 	cout << "*************************************************" << endl;
 	cout << "         BOOK SHOP MANGEMENT SYSTEM" << endl;
 	cout << "*************************************************" << endl;
+	cout << admin_username << endl;
 	cout << "\t1. BOOKS" << endl;
 	cout << "\t2. SUPPLIERS" << endl;
 	cout << "\t3. PURCHASES" << endl;
 	cout << "\t4. EMPLOYEES" << endl;
 	cout << "\t5. MEMBERS" << endl;
 	cout << "\t6. SALES" << endl;
-	cout << "\t7. EXIT" << endl << endl << endl;
+	cout << "\t7. LOGOUT" << endl;
+	cout << "\t8. EXIT" << endl << endl;
 	cout << "Enter Your Choice: ";
 	cin >> c;
 	switch (c)
@@ -181,39 +205,46 @@ void main_menu()
 		case 1:
 			system("clear");
 			book_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 2:
 			system("clear");
 			supplier_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 3:
 			system("clear");
 			purchase_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 4:
 			system("clear");
 			employee_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 5:
 			system("clear");
 			member_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 6:
 			system("clear");
 			sale_menu();
-			cin.get();
+    		cin.get();
 			break;
 		case 7:
+			system("clear");
+			administrator.logout();
+    		cin.get();
+			system("clear");
+			login_menu();
+			break;
+		case 8:
 			exit(1);
 		default:
 			system("clear");
 			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
-			cin.get();
+    		cin.get();
 			break;
 	}
 	return;
@@ -221,7 +252,19 @@ void main_menu()
 
 void book_menu() 
 {
-
+	int c;
+	books b;
+	cout << "*************************************************" << endl;
+	cout << "                  BOOK MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "   1. ADD" << endl;
+	cout << "   2. UPDATE PRICE" << endl;
+	cout << "   3. SEARCH" << endl;
+	cout << "   4. UPDATE STATUS" << endl;
+	cout << "   5. DISPLAY ALL" << endl;
+	cout << "   6. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
 }
 
 void supplier_menu()

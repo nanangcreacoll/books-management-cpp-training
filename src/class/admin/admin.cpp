@@ -47,7 +47,8 @@ bool admin::login(string input_username, string input_password)
         string stored_password = row[1];
 
         string hash_password = admin::sha256(password);
-        return (hash_password == stored_password);
+        is_logged_in = (hash_password == stored_password);
+        return is_logged_in;
     }
     else
     {
@@ -98,4 +99,20 @@ void admin::add()
         cout << endl << endl << "Admin added successfully." << endl << endl << endl;
     }
     mysql_free_result(res_set);
+}
+
+void admin::logout()
+{
+    is_logged_in = false;
+    cout << "You have logout." << endl;
+}
+
+bool admin::get_is_logged_in() const
+{
+    return is_logged_in;
+}
+
+string admin::get_username() const
+{
+    return username;
 }

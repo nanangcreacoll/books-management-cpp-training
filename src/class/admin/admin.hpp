@@ -22,11 +22,15 @@ class admin
     int id; // primary key
     string username;
     string password;
-
+private:
+    bool is_logged_in = false;
 public:
     string sha256(const string& str);
     void add();
     bool login(string input_username, string input_password);
+    void logout();
+    bool get_is_logged_in() const;
+    string get_username() const;
 };
 
 #endif
