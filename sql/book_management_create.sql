@@ -28,6 +28,8 @@ CREATE TABLE suppliers
     addr_state VARCHAR(255)
 );
 
+DROP TABLE purchases;
+
 --purchases
 CREATE TABLE purchases
 (
@@ -36,8 +38,9 @@ CREATE TABLE purchases
     sup_id INT,
     qty INT,
     dt_ordered DATE,
-    estim_deliv INT,
+    estim_deliv DATE,
     received CHAR,
+    inv INT,
     FOREIGN KEY (book_id) REFERENCES books(id),
     FOREIGN KEY (sup_id) REFERENCES suppliers(id)
 );
