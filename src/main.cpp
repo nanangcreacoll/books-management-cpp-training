@@ -274,18 +274,23 @@ void book_menu()
 	{
 		case 1:
 			b.add();
+			cin.get();
 			break;
 		case 2:
 			b.update_price();
+			cin.get();
 			break;
 		case 3:
 			b.search();
+			cin.get();
 			break;
 		case 4:
 			b.update();
+			cin.get();
 			break;
 		case 5:
 			b.display();
+			cin.get();
 			break;
 		case 6:
 			return;

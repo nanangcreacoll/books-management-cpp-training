@@ -146,7 +146,7 @@ void books::display()
     res_set = mysql_store_result(conn);
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\tName for book " << i++ << " : " << row[1] << endl;
+        cout << "\tName for book " << ++i << " : " << row[1] << endl;
         cout << "\tName of Author: " << row[2] << endl;
         cout << "\tPrice: " << row[3] << endl;
         cout << "\tQuantity: " << row[4] << endl;
