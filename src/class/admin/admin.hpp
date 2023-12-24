@@ -30,7 +30,6 @@ public:
     bool login(string input_username, string input_password);
     void logout();
     bool get_is_logged_in() const;
-    string get_username() const;
 };
 
 #endif

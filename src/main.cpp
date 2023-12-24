@@ -270,6 +270,31 @@ void book_menu()
 	cout << "   6. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	switch (c)
+	{
+		case 1:
+			b.add();
+			break;
+		case 2:
+			b.update_price();
+			break;
+		case 3:
+			b.search();
+			break;
+		case 4:
+			b.update();
+			break;
+		case 5:
+			b.display();
+			break;
+		case 6:
+			return;
+			break;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			break;
+	}
+	return;
 }
 
 void supplier_menu()
