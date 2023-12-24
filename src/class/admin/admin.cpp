@@ -111,8 +111,3 @@ bool admin::get_is_logged_in() const
 {
     return is_logged_in;
 }
-
-string admin::get_username() const
-{
-    return username;
-}

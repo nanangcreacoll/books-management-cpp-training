@@ -23,6 +23,8 @@ stringstream stmt;
 const char* q;
 string query;
 
+string admin_username;
+
 //classes
 #include "class/books/books.hpp"
 #include "class/suppliers/suppliers.hpp"
@@ -95,7 +97,7 @@ void login_menu()
 	admin administrator;
 
 	cout << "*************************************************" << endl;
-	cout << "         			LOGIN MENU" << endl;
+	cout << "                 LOGIN MENU" << endl;
 	cout << "*************************************************" << endl;
 	cout << "\t1. LOGIN" << endl;
 	cout << "\t2. ADD ADMIN" << endl;
@@ -116,6 +118,7 @@ void login_menu()
 
 		if (bool logged_in = administrator.get_is_logged_in())
 		{
+			admin_username = input_username;
 			cout << endl << endl << "Valid login." << endl << endl;
 			cout << "Press any key ...";
     		cin.get();
@@ -182,14 +185,12 @@ void login_menu()
 void main_menu()
 {
     int c;
-
 	admin administrator;
-	string admin_username = administrator.get_username();
 
+	cout << "Admin: " << admin_username << endl;
 	cout << "*************************************************" << endl;
 	cout << "         BOOK SHOP MANGEMENT SYSTEM" << endl;
 	cout << "*************************************************" << endl;
-	cout << admin_username << endl;
 	cout << "\t1. BOOKS" << endl;
 	cout << "\t2. SUPPLIERS" << endl;
 	cout << "\t3. PURCHASES" << endl;
@@ -235,6 +236,8 @@ void main_menu()
 		case 7:
 			system("clear");
 			administrator.logout();
+			cin.clear();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
     		cin.get();
 			system("clear");
 			login_menu();
@@ -244,6 +247,8 @@ void main_menu()
 		default:
 			system("clear");
 			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
+			cin.clear();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
     		cin.get();
 			break;
 	}
