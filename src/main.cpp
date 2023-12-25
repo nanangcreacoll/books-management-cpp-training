@@ -236,19 +236,18 @@ void main_menu()
 			system("clear");
 			administrator.logout();
 			cin.clear();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
     		cin.get();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			system("clear");
 			login_menu();
 			break;
 		case 8:
 			exit(0);
 		default:
-			system("clear");
-			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
+			cout << "\nWrong Input" << endl << endl << "Invalid input" << endl;
 			cin.clear();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
     		cin.get();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 	return;
@@ -296,7 +295,10 @@ void book_menu()
 			return;
 			break;
 		default:
-			cout << "Wrong Input" << endl << "Invalid input";
+			cout << "\nWrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 	return;
@@ -335,6 +337,9 @@ void supplier_menu()
 			break;
 		default:
 			cout << "Wrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 
