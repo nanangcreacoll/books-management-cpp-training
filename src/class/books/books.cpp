@@ -3,15 +3,15 @@
 void books::add()
 {
     cout << "\nAdd Book Data" << endl;
-    cout << "\tName: ";
+    cout << "\tName\t\t: ";
     cin.ignore();
     getline(cin, name);
-    cout << "\tAuthor: ";
+    cout << "\tAuthor\t\t: ";
     getline(cin, author);
-    cout << "\tPrice: ";
+    cout << "\tPrice\t\t: ";
     cin >> price;
     cin.ignore();
-    cout << "\tQuantity received: ";
+    cout << "\tQuantity received\t: ";
     cin >> qty;
     cin.ignore();
 
@@ -41,7 +41,7 @@ void books::update_price()
 {
     char choice;
     cout << "\nBook Update in Price" << endl;
-    cout << "\tBook Id: ";
+    cout << "\tBook Id\t\t: ";
     cin >> id;
     
     stmt.str("");
@@ -58,14 +58,14 @@ void books::update_price()
     
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\tBook name: " << row[0] << endl;
-        cout << "\tCurrent price of the book: " << row[1] << endl;
+        cout << "\tBook name\t\t\t: " << row[0] << endl;
+        cout << "\tCurrent price of the book\t: " << row[1] << endl;
         cout << "\tDo yout want to update the price? [y/n]: ";
         cin >> choice;
         
         if (choice == 121 || choice == 89)
         {
-            cout << "\tNew price: ";
+            cout << "\tNew price\t: ";
             cin >> price;
 
             stmt.str("");
@@ -99,7 +99,7 @@ void books::update_price()
 void books::search()
 {
     cout << "\nBook Search" << endl;
-    cout << "\tBook id for details: ";
+    cout << "\tBook id for details\t\t: ";
     cin >> id;
 
     stmt.str("");
@@ -111,11 +111,10 @@ void books::search()
     
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\tThe Details of Book Id: " << row[0] << endl;
-        cout << "\tThe Name of the book is: " << row[1] << endl;
-        cout << "\tThe Author of: " << row[1] << " is " << row[2] << endl;
-        cout << "\tThe price of the book is: " << row[3] << endl;
-        cout << "\tThe inventory count is: " << row[4] << endl;
+        cout << "\tThe Name of the book is\t: " << row[1] << endl;
+        cout << "\tThe Author of\t\t: " << row[1] << " is " << row[2] << endl;
+        cout << "\tThe price of the book is\t: " << row[3] << endl;
+        cout << "\tThe inventory count is\t: " << row[4] << endl;
     }
     else
     {
@@ -204,11 +203,11 @@ void books::display()
     res_set = mysql_store_result(conn);
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\tName for book " << ++i << " : " << row[1] << endl;
-        cout << "\tId for book: " << row[0] << endl;
-        cout << "\tName of Author: " << row[2] << endl;
-        cout << "\tPrice: " << row[3] << endl;
-        cout << "\tQuantity: " << row[4] << endl;
+        cout << "\tName for book " << ++i << "\t: " << row[1] << endl;
+        cout << "\tId for book\t: " << row[0] << endl;
+        cout << "\tName of Author\t: " << row[2] << endl;
+        cout << "\tPrice\t: " << row[3] << endl;
+        cout << "\tQuantity\t: " << row[4] << endl;
         cout << endl << endl << endl << endl;
     }
 }

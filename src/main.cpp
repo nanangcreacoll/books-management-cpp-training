@@ -22,7 +22,6 @@ MYSQL_ROW row;
 stringstream stmt;
 const char* q;
 string query;
-
 string admin_username;
 
 //classes
@@ -305,6 +304,39 @@ void book_menu()
 
 void supplier_menu()
 {
+	int c;
+	suppliers s;
+
+	cout << "Admin: " << admin_username << endl;
+	cout << "*************************************************" << endl;
+	cout << "                SUPPLIER MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. ADD" << endl;
+	cout << "\t2. REMOVE" << endl;
+	cout << "\t3. SEARCH" << endl;
+	cout << "\t4. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			s.add_sup();
+			break;
+		case 2:
+			s.remove_supplier();
+			cin.get();
+			break;
+		case 3:
+			s.search_id();
+			cin.get();
+			break;
+		case 4:
+			return;
+			break;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			break;
+	}
 
 }
 
