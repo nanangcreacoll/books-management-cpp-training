@@ -206,7 +206,7 @@ void books::display()
         cout << "\tName for book " << ++i << "\t: " << row[1] << endl;
         cout << "\tId for book\t: " << row[0] << endl;
         cout << "\tName of Author\t: " << row[2] << endl;
-        cout << "\tPrice\t: " << row[3] << endl;
+        cout << "\tPrice\t\t: " << row[3] << endl;
         cout << "\tQuantity\t: " << row[4] << endl;
         cout << endl << endl << endl << endl;
     }
