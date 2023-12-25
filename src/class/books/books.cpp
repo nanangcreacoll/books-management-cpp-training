@@ -41,7 +41,7 @@ void books::update_price()
 {
     char choice;
     cout << "\nBook Update in Price" << endl;
-    cout << "\tBook Id\t\t: ";
+    cout << "\tBook Id\t\t\t: ";
     cin >> id;
     
     stmt.str("");
@@ -65,7 +65,7 @@ void books::update_price()
         
         if (choice == 121 || choice == 89)
         {
-            cout << "\tNew price\t: ";
+            cout << "\tNew price\t\t\t: ";
             cin >> price;
 
             stmt.str("");
@@ -111,10 +111,10 @@ void books::search()
     
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\tThe Name of the book is\t: " << row[1] << endl;
-        cout << "\tThe Author of\t\t: " << row[1] << " is " << row[2] << endl;
+        cout << "\tThe Name of the book is\t\t: " << row[1] << endl;
+        cout << "\tThe Author of\t\t\t: " << row[1] << " is " << row[2] << endl;
         cout << "\tThe price of the book is\t: " << row[3] << endl;
-        cout << "\tThe inventory count is\t: " << row[4] << endl;
+        cout << "\tThe inventory count is\t\t: " << row[4] << endl;
     }
     else
     {
