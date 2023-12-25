@@ -31,7 +31,6 @@ string admin_username;
 #include "class/members/members.hpp"
 #include "class/sales/sales.hpp"
 #include "class/admin/admin.hpp"
-#include "class/database_seeders/database_seeders.hpp"
 
 // Functions
 string get_password();
@@ -52,39 +51,38 @@ int main()
 	
 	if (conn)
 	{
-		database_seeders seeding;
 		login_menu();
-
-        while (1)
-        {
-            system("clear");
-            main_menu();
-        }
-    }
-    else
-    {
-        system("clear");
-        cout << "Error while connecting to database." << endl << "Contact tech expert." << endl;
+		
+		while (1)
+		{
+			system("clear");
+			main_menu();
+		}
+	}
+	else
+	{
+		system("clear");
+		cout << "Error while connecting to database." << endl << "Contact tech expert." << endl;
 		cin.get();
     }
-    return 0;
+	return 0;
 }
 
 string get_password() {
 	cin.get();
-    string password;
-
-    termios oldt;
-    tcgetattr(STDIN_FILENO, &oldt);
+	string password;
+	
+	termios oldt;
+	tcgetattr(STDIN_FILENO, &oldt);
 	termios newt = oldt;
-    newt.c_lflag &= ~ECHO;
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    getline(cin, password);
+	newt.c_lflag &= ~ECHO;
+	
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	getline(cin, password);
 	
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &oldt);
-
-    return password;
+	
+	return password;
 }
 
 void login_menu()
@@ -120,7 +118,7 @@ void login_menu()
 			admin_username = input_username;
 			cout << endl << endl << "Valid login." << endl << endl;
 			cout << "Press any key ...";
-    		cin.get();
+			cin.get();
 			break;
 		}
 		else
@@ -149,8 +147,8 @@ void login_menu()
 			system("clear");
 			administrator.add();
 			cin.clear();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    		cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.get();
 			system("clear");
 			administrator.logout();
 			cin.get();
@@ -162,7 +160,7 @@ void login_menu()
 		{
 			cout << endl << endl << "Username or password is not valid." << endl << endl;
 			cout << "Press any key ...";
-    		cin.get();
+			cin.get();
 			system("clear");
 			login_menu();
 			break;
@@ -173,8 +171,8 @@ void login_menu()
 		system("clear");
 		cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
 		cin.clear();
-    	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    	cin.get();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cin.get();
 		system("clear");
 		login_menu();
 		break;
