@@ -298,7 +298,7 @@ void book_menu()
 			cout << "\nWrong Input" << endl << "Invalid input";
 			cin.clear();
 			cin.get();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 	return;
