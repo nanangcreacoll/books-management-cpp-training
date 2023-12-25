@@ -234,8 +234,8 @@ void main_menu()
 			system("clear");
 			administrator.logout();
 			cin.clear();
-    		cin.get();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			system("clear");
 			login_menu();
 			break;
