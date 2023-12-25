@@ -108,3 +108,23 @@ void suppliers::search_id()
         cout << "No supplier found!" << endl;
     }
 }
+
+void suppliers::display()
+{
+    cout << "\nSuppliers Display" << endl;
+    int i = 0;
+    query = "SELECT * FROM suppliers"; 
+    q = query.c_str();
+    mysql_query(conn, q);
+    res_set = mysql_store_result(conn);
+    while ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "\tSupplier id\t: " << row[0] << endl;
+        cout << "\tName\t\t: " << row[1] << endl;
+        cout << "\tPhone Number\t: " << row[2] << endl;
+        cout << "\tAddress\t\t: " << row[3] << ", " << row[4] << endl;
+        cout << "\tCity\t\t: " << row[5] << endl;
+        cout << "\tState\t\t: " << row[6] << endl;
+        cout << endl << endl << endl << endl;
+    }
+}

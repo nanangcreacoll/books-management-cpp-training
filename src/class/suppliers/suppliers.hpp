@@ -29,6 +29,7 @@ public:
     void add_sup();
     void remove_supplier();
     void search_id();
+    void display();
 };
 
 #endif

@@ -314,7 +314,8 @@ void supplier_menu()
 	cout << "\t1. ADD" << endl;
 	cout << "\t2. REMOVE" << endl;
 	cout << "\t3. SEARCH" << endl;
-	cout << "\t4. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "\t4. DISPLAY ALL" << endl;
+	cout << "\t5. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
 	switch (c)
@@ -331,6 +332,10 @@ void supplier_menu()
 			cin.get();
 			break;
 		case 4:
+			s.display();
+			cin.get();
+			break;
+		case 5:
 			return;
 			break;
 		default:
