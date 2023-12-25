@@ -246,8 +246,8 @@ void main_menu()
 		default:
 			cout << "\nWrong Input" << endl << endl << "Invalid input" << endl;
 			cin.clear();
-    		cin.get();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 	return;
@@ -339,7 +339,7 @@ void supplier_menu()
 			cout << "Wrong Input" << endl << "Invalid input";
 			cin.clear();
 			cin.get();
-    		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			break;
 	}
 
