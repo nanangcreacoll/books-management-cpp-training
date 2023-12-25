@@ -168,7 +168,7 @@ void login_menu()
 			break;
 		}
 	case 3:
-		exit(1);
+		exit(0);
 	default:
 		system("clear");
 		cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
@@ -242,7 +242,7 @@ void main_menu()
 			login_menu();
 			break;
 		case 8:
-			exit(1);
+			exit(0);
 		default:
 			system("clear");
 			cout << "Wrong Input" << endl << endl << "Invalid input" << endl;
