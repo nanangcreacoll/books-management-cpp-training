@@ -47,11 +47,11 @@ void sale_menu();
 int main()
 {
 	system("clear");
-    conn = mysql_init(0);
-    conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
-
-    if (conn)
-    {
+	conn = mysql_init(0);
+	conn = mysql_real_connect(conn, HOST, MYSQL_USER, MYSQL_PASS, DATABASE, MYSQL_PORT, NULL ,0);
+	
+	if (conn)
+	{
 		database_seeders seeding;
 		login_menu();
 
