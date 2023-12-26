@@ -350,7 +350,48 @@ void supplier_menu()
 
 void purchase_menu()
 {
+	int c;
+	purchases p;
 
+	cout << "Admin: " << admin_username << endl;
+	cout << "*************************************************" << endl;
+	cout << "                PURCHASES MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "   1. New Order" << endl;
+	cout << "   2. View All" << endl;
+	cout << "   3. Cancel Order" << endl;
+	cout << "   4. Recieved Order" << endl;
+	cout << "   5. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			p.new_ord();
+			cin.get();
+			break;
+		case 2:
+			p.view();
+			cin.get();
+			break;
+		case 3:
+			p.mark_cancel();
+			cin.get();
+			break;
+		case 4:
+			p.mark_reciv();
+			cin.get();
+			break;
+		case 5:
+			return;
+			break;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+	}
 }
 
 void employee_menu()

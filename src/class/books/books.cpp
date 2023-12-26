@@ -3,12 +3,12 @@
 void books::add()
 {
     cout << "\nAdd Book Data" << endl;
-    cout << "\tName\t\t: ";
+    cout << "\tName\t\t\t: ";
     cin.ignore();
     getline(cin, name);
-    cout << "\tAuthor\t\t: ";
+    cout << "\tAuthor\t\t\t: ";
     getline(cin, author);
-    cout << "\tPrice\t\t: ";
+    cout << "\tPrice\t\t\t: ";
     cin >> price;
     cin.ignore();
     cout << "\tQuantity received\t: ";
@@ -112,7 +112,7 @@ void books::search()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "\tThe Name of the book is\t\t: " << row[1] << endl;
-        cout << "\tThe Author of\t\t\t: " << row[1] << " is " << row[2] << endl;
+        cout << "\tThe Author is\t\t\t: " << row[2] << endl;
         cout << "\tThe price of the book is\t: " << row[3] << endl;
         cout << "\tThe inventory count is\t\t: " << row[4] << endl;
     }

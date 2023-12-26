@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <mysql/mysql.h>
+#include <limits>
 
 //struct
 #include "../../dateStruct.hpp"

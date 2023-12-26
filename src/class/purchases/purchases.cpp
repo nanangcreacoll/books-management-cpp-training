@@ -3,20 +3,25 @@
 void purchases::new_ord()
 {
     cout << "\nNew Order Books" << endl;
-    cout << "\tBook id: ";
+    cout << "\tBook id\t\t\t\t\t: ";
     cin >> book_id;
-    cout << "\tSupplier id: ";
+    cout << "\tSupplier id\t\t\t\t: ";
     cin >> sup_id;
-    cout << "\tQuantity: ";
+    cout << "\tQuantity\t\t\t\t: ";
     cin >> qty;
-    cout << "\tEstimated expected delivery (in days): ";
+    cout << "\tEstimated expected delivery (in days)\t: ";
     cin >> estim_deliv;
     
     stmt.str("");
-    stmt << "INSERT INTO purchases (book_id, sup_id, qty, dt_ordered, estim_deliv, recieved) VALUES(" << book_id << ", " << sup_id << ", " << qty << ", curdate(), Date_add(curdate(), INTERVAL " << estim_deliv << " DAY), 'F');";
+    stmt << "INSERT INTO purchases (book_id, sup_id, qty, dt_ordered, estim_deliv, received) VALUES(" << book_id << ", " << sup_id << ", " << qty << ", curdate(), Date_add(curdate(), INTERVAL " << estim_deliv << " DAY), 'F');";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
     cout << "New order added!" << endl;
 }
@@ -26,14 +31,48 @@ void purchases::mark_reciv()
     cout << "\nOrder Received Mark" << endl;
     cout << "\tOrder id: ";
     cin >> order_id;
-    
+
     stmt.str("");
-    stmt << "UPDATE purchases SET received = 'T' WHERE order_id = " << order_id << ";";
+    stmt << "SELECT received FROM purchases WHERE order_id = " << order_id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
 
-    cout << "Received marked successfully!" << endl;
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+    
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        received = *row[0];
+        if (received == 'T')
+        { 
+            cout << endl << endl << "Order already received." << endl << endl << endl;
+        }
+        else
+        {
+            stmt.str("");
+            stmt << "UPDATE purchases SET received = 'T' WHERE order_id = " << order_id << ";";
+            query = stmt.str();
+            q = query.c_str();
+            if (mysql_query(conn, q)) {
+                cout << "Query Error: " << mysql_error(conn) << endl;
+            }
+
+            res_set = mysql_store_result(conn);
+            
+            if (!(res_set))
+                cout << endl << endl << "Received marked successfully!" << endl << endl << endl;
+            else
+                cout << endl << endl << "Entry ERROR!" << endl << "Contact Technical Team" << endl << endl << endl;
+        }
+    }
+    else
+    {
+        cout << endl << endl << "No order found." << endl << endl << endl;
+    }
 }
 
 void purchases::mark_cancel()
@@ -41,14 +80,50 @@ void purchases::mark_cancel()
     cout << "\nOrder Cancelled Mark" << endl;
     cout << "\tOrder id: ";
     cin >> order_id;
-    
+
     stmt.str("");
-    stmt << "UPDATE purchases SET received = 'C' WHERE order_id = " << order_id << ";";
+    stmt << "SELECT received FROM purchases WHERE order_id = " << order_id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
 
-    cout << "Cancelled marked successfully" << endl;
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+    
+    res_set = mysql_store_result(conn);
+    
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        received = *row[0];
+        if (received == 'C')
+        { 
+            cout << endl << endl << "Order already canceled." << endl << endl << endl;
+        }
+        else
+        {
+            stmt.str("");
+            stmt << "UPDATE purchases SET received = 'C' WHERE order_id = " << order_id << ";";
+            query = stmt.str();
+            q = query.c_str();
+            if (mysql_query(conn, q)) 
+            {
+                cout << "Query Error: " << mysql_error(conn) << endl;
+                return;
+            }
+
+            res_set = mysql_store_result(conn);
+            
+            if (!(res_set))
+                cout << endl << endl << "Cancelled marked successfully!" << endl << endl << endl;
+            else
+                cout << endl << endl << "Entry ERROR!" << endl << "Contact Technical Team" << endl << endl << endl;
+        }
+    } 
+    else
+    {
+        cout << endl << endl << "No order found." << endl << endl << endl;
+    }
 }
 
 void purchases::view()
@@ -72,14 +147,21 @@ void purchases::view()
         received = 'T';
         break;
     default:
+        cout << "Wrong Input" << endl << "Invalid input";
+		cin.get();
         return;
+        break;
     }
 
     stmt.str("");
-    stmt << "SELECT * FROM purchases WHERE received = " << received << ";";
+    stmt << "SELECT * FROM purchases WHERE received = '" << received << "';";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     res_set = mysql_store_result(conn);
     
     switch (c)
@@ -89,18 +171,23 @@ void purchases::view()
         break;
     case 2:
         cout << endl << "\nOrders cancelled are" << endl;
+        break;
     case 3:
         cout << endl << "\nOrders received are" << endl;
+        break;
+    default:
+        return;
+        break;
     }
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << endl;
-        cout << "\tOrder id: " << row[0] << endl;
-        cout << "\tBook id: " << row[1] << endl;
-        cout << "\tSupplier id: " << row[2] << endl;
-        cout << "\tQuantity: " << row[3] << endl;
-        cout << "\tDate ordered: " << row[4] << endl;
-        cout << "\tEstimated delivery date: " << row[5] << endl;
+        cout << "\tOrder id\t\t: " << row[0] << endl;
+        cout << "\tBook id\t\t\t: " << row[1] << endl;
+        cout << "\tSupplier id\t\t: " << row[2] << endl;
+        cout << "\tQuantity\t\t: " << row[3] << endl;
+        cout << "\tDate ordered\t\t: " << row[4] << endl;
+        cout << "\tEstimated delivery date\t: " << row[5] << endl;
         cout << endl << endl << endl;
     }
     cout << endl << endl << endl << endl;
