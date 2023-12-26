@@ -59,16 +59,19 @@ bool admin::login(const char* input_username, const char* input_password)
 
 void admin::add()
 {
+    string input_username;
+    string input_password;
+
     cout << "\nAdd Admin" << endl;
     cout << "\tUsername: ";
-    cin >> username;
+    cin >> input_username;
     cout << "\tPassword: ";
-    cin >> password;
+    cin >> input_username;
 
-    string hash_password = admin::sha256(password);
+    string hash_password = admin::sha256(input_password);
     
     stmt.str("");
-    stmt << "SELECT username FROM admin WHERE username = '" << username << "';";
+    stmt << "SELECT username FROM admin WHERE username = '" << input_username << "';";
     query = stmt.str();
     q = query.c_str();
 
@@ -91,7 +94,7 @@ void admin::add()
     else
     {
         stmt.str("");
-        stmt << "INSERT INTO admin (username, password) VALUES ('" << username << "', '" << hash_password << "');";
+        stmt << "INSERT INTO admin (username, password) VALUES ('" << input_username << "', '" << hash_password << "');";
         query = stmt.str();
         q = query.c_str();
         mysql_query(conn, q);
