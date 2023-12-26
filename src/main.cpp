@@ -15,15 +15,6 @@
 
 using namespace std;
 
-//Global Variable
-MYSQL* conn;
-MYSQL_RES* res_set;
-MYSQL_ROW row;
-stringstream stmt;
-const char* q;
-string query;
-string admin_username;
-
 //classes
 #include "class/books/books.hpp"
 #include "class/suppliers/suppliers.hpp"
@@ -31,6 +22,15 @@ string admin_username;
 #include "class/members/members.hpp"
 #include "class/sales/sales.hpp"
 #include "class/admin/admin.hpp"
+
+//Global Variable
+MYSQL* conn;
+MYSQL_RES* res_set;
+MYSQL_ROW row;
+stringstream stmt;
+const char* q;
+string query;
+admin administrator;
 
 // Functions
 string get_password();
@@ -91,8 +91,6 @@ void login_menu()
 	string input_username;
 	string input_password;
 
-	admin administrator;
-
 	cout << "*************************************************" << endl;
 	cout << "                 LOGIN MENU" << endl;
 	cout << "*************************************************" << endl;
@@ -111,11 +109,10 @@ void login_menu()
 		cout << "\tPassword: ";
 		input_password = get_password();
 
-		administrator.login(input_username, input_password);
+		administrator.login(input_username.c_str(), input_password.c_str());
 
 		if (bool logged_in = administrator.get_is_logged_in())
 		{
-			admin_username = input_username;
 			cout << endl << endl << "Valid login." << endl << endl;
 			cout << "Press any key ...";
 			cin.get();
@@ -137,7 +134,7 @@ void login_menu()
 		cout << "\tPassword: ";
 		input_password = get_password();
 
-		administrator.login(input_username, input_password);
+		administrator.login(input_username.c_str(), input_password.c_str());
 
 		if (bool logged_in = administrator.get_is_logged_in())
 		{
@@ -182,9 +179,8 @@ void login_menu()
 void main_menu()
 {
     int c;
-	admin administrator;
 
-	cout << "Admin: " << admin_username << endl;
+	cout << "Admin: " << administrator.get_username() << endl;
 	cout << "*************************************************" << endl;
 	cout << "         BOOK SHOP MANGEMENT SYSTEM" << endl;
 	cout << "*************************************************" << endl;
@@ -256,7 +252,7 @@ void book_menu()
 	int c;
 	books b;
 
-	cout << "Admin: " << admin_username << endl;
+	cout << "Admin: " << administrator.get_username() << endl;
 	cout << "*************************************************" << endl;
 	cout << "                  BOOK MENU" << endl;
 	cout << "*************************************************" << endl;
@@ -307,7 +303,7 @@ void supplier_menu()
 	int c;
 	suppliers s;
 
-	cout << "Admin: " << admin_username << endl;
+	cout << "Admin: " << administrator.get_username() << endl;
 	cout << "*************************************************" << endl;
 	cout << "                SUPPLIER MENU" << endl;
 	cout << "*************************************************" << endl;
@@ -353,7 +349,7 @@ void purchase_menu()
 	int c;
 	purchases p;
 
-	cout << "Admin: " << admin_username << endl;
+	cout << "Admin: " << administrator.get_username() << endl;
 	cout << "*************************************************" << endl;
 	cout << "                PURCHASES MENU" << endl;
 	cout << "*************************************************" << endl;

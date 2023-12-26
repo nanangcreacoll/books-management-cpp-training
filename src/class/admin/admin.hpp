@@ -27,9 +27,10 @@ private:
 public:
     string sha256(const string& str);
     void add();
-    bool login(string input_username, string input_password);
+    bool login(const char*, const char*);
     void logout();
     bool get_is_logged_in() const;
+    string get_username() const;
 };
 
 #endif
