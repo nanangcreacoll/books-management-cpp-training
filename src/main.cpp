@@ -444,7 +444,38 @@ void employee_menu()
 
 void member_menu()
 {
+	int c;
+	members m;
+	m.refresh();
 
+	cout << "Admin: " << administrator.get_username() << endl;
+	cout << "*************************************************" << endl;
+	cout << "                 MEMBERS MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. New Member" << endl;
+	cout << "\t2. Search Member" << endl;
+	cout << "\t3. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			m.add_member();
+			break;
+		case 2:
+			m.search_member();
+			cin.get();
+			break;
+		case 3:
+			return;
+			break;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+	}
 }
 
 void sale_menu()
