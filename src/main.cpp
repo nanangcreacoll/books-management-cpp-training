@@ -480,5 +480,35 @@ void member_menu()
 
 void sale_menu()
 {
+	int c;
+	sales s;
 
+	cout << "Admin: " << administrator.get_username() << endl;
+	cout << "*************************************************" << endl;
+	cout << "                 SALES MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. Add New Bill" << endl;
+	cout << "\t2. Total Sales Of The Year" << endl;
+	cout << "\t3. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			s.add();
+			cin.get();
+			break;
+		case 2:
+			s.find_total_sales();
+			cin.get();
+			break;
+		case 3:
+			return;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+	}
 }
