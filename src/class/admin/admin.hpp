@@ -25,7 +25,7 @@ class admin
 private:
     bool is_logged_in = false;
 public:
-    string sha256(const string& str);
+    string sha256(const string&);
     void add();
     bool login(const char*, const char*);
     void logout();
