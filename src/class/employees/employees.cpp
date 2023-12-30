@@ -3,14 +3,18 @@
 void employees::add_emp()
 {
     cout << "\nAdd Employees" << endl;
-    cout << "\tEnter your id for verification: ";
+    cout << "\tEnter your id for verification\t: ";
     cin >> id;
 
     stmt.str("");
     stmt << "SELECT mgr_status FROM employees WHERE id = " << id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     
     res_set = mysql_store_result(conn);
     if ((row = mysql_fetch_row(res_set)) == NULL)
@@ -21,7 +25,7 @@ void employees::add_emp()
     else
     {
         mgr_status = (char*) row[0];
-        if (mgr_status == "T")
+        if (mgr_status == "F")
         {
             cout << "You do not have Manager rights!" << endl << endl;
             return;
@@ -29,38 +33,47 @@ void employees::add_emp()
     }
 
     cout << "\nDetails of New Employees" << endl;
-    cout << "\tName: ";
+    cout << "\tName\t\t: ";
     cin >> name;
-    cout << "\tAddress (in 3 lines, 3rd line is the city): ";
-    cin >> addr_line1;
-    cin >> addr_line2;
-    cin >> addr_city;
-    cout << "\tState: ";
-    cin >> addr_state;
-    cout << "\tPhone number: ";
+    cout << "\tAddress (in 3 lines, 3rd line is the city): \n";
+    cin.ignore();
+    getline(cin, addr_line1);
+    getline(cin, addr_line2);
+    getline(cin, addr_city);
+    cout << "\tState\t\t: ";
+    getline(cin, addr_state);
+    cout << "\tPhone number\t: ";
     cin >> phone_num;
-    cout << "\tSalary: ";
+    cout << "\tSalary\t\t: ";
     cin >> salary;
     
     stmt.str(""); 
-    stmt << "INSERT INTO employees (name, addr_line1, addr_line2, addr_city, addr_state, phone_num, date_of_joining, salary) VALUES('" << name << "', '" << addr_line1 << "', '" << addr_line2 << "', '" << addr_city << "', '" << addr_state << "', " << phone_num << ", curdate(), " << salary << ");";
+    stmt << "INSERT INTO employees (name, addr_line1, addr_line2, addr_city, addr_state, phone_num, date_of_joining, salary, mgr_status) VALUES('" << name << "', '" << addr_line1 << "', '" << addr_line2 << "', '" << addr_city << "', '" << addr_state << "', " << phone_num << ", curdate(), " << salary << ", 'F');";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     cout << endl << endl << "Employee added successfully" << endl << endl << endl;
 }
 
 void employees::assign_mgr_status()
 {
     cout << "\nAssign Manager Status" << endl;
-    cout << "\tEnter your id for verification: ";
+    cout << "\tEnter your id for verification\t\t: ";
     cin >> id;
 
     stmt.str("");
     stmt << "SELECT mgr_status FROM employees WHERE id = " << id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     
     res_set = mysql_store_result(conn);
     if ((row = mysql_fetch_row(res_set)) == NULL)
@@ -71,21 +84,25 @@ void employees::assign_mgr_status()
     else
     {
         mgr_status = (char*) row[0];
-        if (mgr_status == "T")
+        if (mgr_status == "F")
         {
             cout << "You do not have Manager rights!" << endl << endl;
             return;
         }
     }
 
-    cout << "\tEmployee id to grant Manager status: ";
+    cout << "\tEmployee id to grant Manager status\t: ";
     cin >> id;
 
     stmt.str("");
     stmt << "UPDATE employees SET mgr_status = 'T' WHERE id = " << id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
     cout << endl << endl << endl;
     cout << "Manager status granted!" << endl << endl << endl;
 }
@@ -106,12 +123,12 @@ void employees::search_emp()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "\nEmployee Details" << endl;
-        cout << "\tName: " << row[1] << endl;
-        cout << "\tAddress: " << row[2] << " " << row[3] << ", " << row[4] << endl;
-        cout << "\tState: " << row[5] << endl;
-        cout << "\tPhone number: " << row[6] << endl;
-        cout << "\tDate of joining: " << row[7] << endl;
-        cout << "\tSalary: " << row[8] << endl << endl << endl;
+        cout << "\tName\t\t: " << row[1] << endl;
+        cout << "\tAddress\t\t: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
+        cout << "\tState\t\t: " << row[5] << endl;
+        cout << "\tPhone number\t: " << row[6] << endl;
+        cout << "\tDate of joining\t: " << row[7] << endl;
+        cout << "\tSalary\t\t: " << row[8] << endl << endl << endl;
     }
     else
     {
@@ -132,13 +149,14 @@ void employees::display()
     {
         do
         {
-            cout << "\nEmployees Details, No." << ++i << endl;
-            cout << "\tName: " << row[1] << endl;
-            cout << "\tAddress: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
-            cout << "\tState: " << row[5] << endl;
-            cout << "\tPhone number: " << row[6] << endl;
-            cout << "\tDate of joining: " << row[7] << endl;
-            cout << "\tSalary: " << row[8] << endl;
+            cout << "\nEmployee Details, No." << ++i << endl;
+            cout << "\tEmployee id\t: " << row[0] << endl;
+            cout << "\tName\t\t: " << row[1] << endl;
+            cout << "\tAddress\t\t: " << row[2] << ", " << row[3] << ", " << row[4] << endl;
+            cout << "\tState\t\t: " << row[5] << endl;
+            cout << "\tPhone number\t: " << row[6] << endl;
+            cout << "\tDate of joining\t: " << row[7] << endl;
+            cout << "\tSalary\t\t: " << row[8] << endl;
             cout << endl << endl << endl;
         } while ((row = mysql_fetch_row(res_set)) != NULL);
     }
@@ -151,17 +169,43 @@ void employees::display()
 void employees::update_salary()
 {
     cout << "\nEmployees Update Salary" << endl;
-    cout << "\tEmployee id: ";
+    cout << "\tEmployee id\t\t: ";
     cin >> id;
-    cout << "\tEnter updated salaray: ";
-    cin >> salary;
     
     stmt.str("");
-    stmt << "UPDATE employees SET salary = " << salary << "WHERE id = " << id << ";";
+    stmt << "SELECT name FROM employees WHERE id = " << id << ";";
     query = stmt.str();
     q = query.c_str();
-    mysql_query(conn, q);
-    cout << endl << endl << endl;
-    cout << "Salary update successfully" << endl;
-    cout << endl << endl << endl;
+
+    if (mysql_query(conn, q)) {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "\tName\t\t\t: " << row[0] << endl;
+        cout << "\tEnter updated salaray\t: ";
+        cin >> salary;
+        
+        stmt.str("");
+        stmt << "UPDATE employees SET salary = " << salary << " WHERE id = " << id << ";";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+        cout << endl << endl << endl;
+        cout << "Salary update successfully" << endl;
+        cout << endl << endl << endl;
+    }
+    else
+    {
+        cout << endl << endl << endl;
+        cout << "No Employee found." << endl;
+        cout << endl << endl << endl;
+    }
 }
