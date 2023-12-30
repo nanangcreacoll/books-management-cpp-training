@@ -119,7 +119,7 @@ void suppliers::display()
     res_set = mysql_store_result(conn);
     while ((row = mysql_fetch_row(res_set)) != NULL)
     {
-        cout << "\nSuppliers Details, No." << ++i << endl;
+        cout << "\nSupplier Details, No." << ++i << endl;
         cout << "\tSupplier id\t: " << row[0] << endl;
         cout << "\tName\t\t: " << row[1] << endl;
         cout << "\tPhone Number\t: " << row[2] << endl;
