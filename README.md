@@ -42,6 +42,7 @@ string addr_state;
 void add_sup();
 void remove_supplier();
 void search_id();
+void display();
 ```
 
 - **purchases**
