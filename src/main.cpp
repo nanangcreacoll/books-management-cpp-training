@@ -19,6 +19,7 @@ using namespace std;
 #include "class/books/books.hpp"
 #include "class/suppliers/suppliers.hpp"
 #include "class/purchases/purchases.hpp"
+#include "class/employees/employees.hpp"
 #include "class/members/members.hpp"
 #include "class/sales/sales.hpp"
 #include "class/admin/admin.hpp"
@@ -392,7 +393,53 @@ void purchase_menu()
 
 void employee_menu()
 {
+	int c;
+	employees e;
 
+	cout << "Admin: " << administrator.get_username() << endl;
+	cout << "*************************************************" << endl;
+	cout << "                 EMPLOYEE MENU" << endl;
+	cout << "*************************************************" << endl;
+	cout << "\t1. New Employee" << endl;
+	cout << "\t2. Search Employee" << endl;
+	cout << "\t3. Assign Manager" << endl;
+	cout << "\t4. View All" << endl;
+	cout << "\t5. Update Salary" << endl;
+	cout << "\t6. RETURN TO MAIN MENU" << endl << endl << endl;
+	cout << "Enter Your Choice : ";
+	cin >> c;
+	switch (c)
+	{
+		case 1:
+			e.add_emp();
+			cin.get();
+			break;
+		case 2:
+			e.search_emp();
+			cin.get();
+			break;
+		case 3:
+			e.assign_mgr_status();
+			cin.get();
+			break;
+		case 4:
+			e.display();
+			cin.get();
+			break;
+		case 5:
+			e.update_salary();
+			cin.get();
+			break;
+		case 6:
+			return;
+			break;
+		default:
+			cout << "Wrong Input" << endl << "Invalid input";
+			cin.clear();
+			cin.get();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			break;
+	}
 }
 
 void member_menu()
