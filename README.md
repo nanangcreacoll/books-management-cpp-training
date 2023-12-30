@@ -125,6 +125,26 @@ void add();
 void find_total_sales();
 ```
 
+Create admin class to using for login method
+
+- **Admin**
+
+```c++
+// Data Tables
+int id; // primary key
+string username;
+string password;
+
+bool is_logged_in = false;
+
+// Method
+string sha256(const string&);
+void add();
+bool login(const string&, const string&);
+void logout();
+bool get_is_logged_in() const;
+string get_username() const;
+```
 
 ---
 
