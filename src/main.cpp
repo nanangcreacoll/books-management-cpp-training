@@ -110,7 +110,7 @@ void login_menu()
 		cout << "\tPassword: ";
 		input_password = get_password();
 
-		administrator.login(input_username.c_str(), input_password.c_str());
+		administrator.login(input_username, input_password);
 
 		if (bool logged_in = administrator.get_is_logged_in())
 		{

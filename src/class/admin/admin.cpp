@@ -22,7 +22,7 @@ string admin::sha256(const string& str)
     return ss;
 }
 
-bool admin::login(const char* input_username, const char* input_password)
+bool admin::login(const string& input_username, const string& input_password)
 {
     username = input_username;
     password = input_password;
