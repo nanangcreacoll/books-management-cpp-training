@@ -5,7 +5,10 @@
 #include <string>
 #include <sstream>
 #include <mysql/mysql.h>
-#include "../admin/admin.hpp"
+#include <openssl/evp.h>
+#include <openssl/sha.h>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -18,10 +21,16 @@ extern string query;
 
 class database_seeders
 {
-    admin admin_seed;
+private:
+    string username = "admin";
+    string password = "password";
+
+    
 public:
-    void admin_seeders();
+    string sha256(const string&);
+    void admin_seed();
     database_seeders();
+    ~database_seeders();
 };
 
 #endif
