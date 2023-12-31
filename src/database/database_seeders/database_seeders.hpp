@@ -66,6 +66,19 @@ private:
     string member3_addr_city = "Sleman";
     string member3_addr_state = "DI Yogyakarta";
 
+    // suppliers seed
+    string supplier1_name = "CV. Tirta Buana Media";
+    string supplier1_addr_line1 = "Perumahan Tirta Buana Blok H No. 33";
+    string supplier1_addr_line2 = "Cepor, Sendangtirto, Berbah";
+    string supplier1_addr_city = "Sleman";
+    string supplier1_addr_state = "DI Yogyakarta";
+
+    string supplier2_name = "Adipura Books";
+    string supplier2_addr_line1 = "Jalan KH. Djawad Faqih MG III/876";
+    string supplier2_addr_line2 = "Mergangsan";
+    string supplier2_addr_city = "Yogyakarta";
+    string supplier2_addr_state = "DI Yogyakarta";
+
 public:
     string sha256(const string&);
     void admin_seed();

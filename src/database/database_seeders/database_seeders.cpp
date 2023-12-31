@@ -147,7 +147,65 @@ void database_seeders::books_seed()
 
 void database_seeders::suppliers_seed()
 {
+    stmt.str("");
+    stmt << "SHOW TABLES LIKE 'suppliers';";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Suppliers table found. Drop table.\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        stmt.str("");
+        stmt << "DROP TABLE suppliers;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+    }
+
+    stmt.str("");
+    stmt << "CREATE TABLE suppliers ( "
+        << "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+        << "name VARCHAR(255), "
+        << "phone_num BIGINT, "
+        << "addr_line1 VARCHAR(255), "
+        << "addr_line2 VARCHAR(255), "
+        << "addr_city VARCHAR(255), "
+        << "addr_state VARCHAR(255) )"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    stmt.str("");
+    stmt << "INSERT INTO suppliers(name, phone_num, addr_line1, addr_line2, addr_city, addr_state) "
+        << "VALUES "
+        << "(\""<< supplier1_name <<"\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), \""<< supplier1_addr_line1 <<"\", \""<< supplier1_addr_line2 <<"\", \""<< supplier1_addr_city <<"\", \""<< supplier1_addr_city <<"\"), "
+        << "(\""<< supplier2_name <<"\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), \""<< supplier2_addr_line1 <<"\", \""<< supplier2_addr_line2 <<"\", \""<< supplier2_addr_city <<"\", \""<< supplier2_addr_city <<"\")"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 }
 
 void database_seeders::employees_seed()

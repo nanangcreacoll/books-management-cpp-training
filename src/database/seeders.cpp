@@ -34,17 +34,21 @@ int main()
 	if (conn)
 	{
         database_seeders seeders;
-		// cout << "Admin seeding ..." << endl;
-		// this_thread::sleep_for(chrono::seconds(2));
-		// seeders.admin_seed();
+		cout << "Admin seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.admin_seed();
 
-		// cout << "Books seeding ..." << endl;
-		// this_thread::sleep_for(chrono::seconds(2));
-		// seeders.books_seed();
+		cout << "Books seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.books_seed();
 
-		// cout << "Members seeding ..." << endl;
-		// this_thread::sleep_for(chrono::seconds(2));
-		// seeders.members_seed();
+		cout << "Suppliers seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.suppliers_seed();
+
+		cout << "Members seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.members_seed();
 		
 	}
 	else
