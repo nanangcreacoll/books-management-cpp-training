@@ -25,10 +25,15 @@ private:
     string username = "admin";
     string password = "password";
 
-    
 public:
     string sha256(const string&);
     void admin_seed();
+    void books_seed();
+    void suppliers_seed();
+    void purchases_seed();
+    void employees_seed();
+    void members_seed();
+    void sales_seed();
     database_seeders();
     ~database_seeders();
 };
