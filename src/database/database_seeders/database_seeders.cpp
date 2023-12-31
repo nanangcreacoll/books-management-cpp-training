@@ -210,7 +210,69 @@ void database_seeders::suppliers_seed()
 
 void database_seeders::employees_seed()
 {
+    stmt.str("");
+    stmt << "SHOW TABLES LIKE 'employees';";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Employees table found. Drop table.\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        stmt.str("");
+        stmt << "DROP TABLE employees;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+    }
+
+    stmt.str("");
+    stmt << "CREATE TABLE employees ( "
+        << "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+        << "name VARCHAR(255), "
+        << "addr_line1 VARCHAR(255), "
+        << "addr_line2 VARCHAR(255), "
+        << "addr_city VARCHAR(255), "
+        << "addr_state VARCHAR(255), "
+        << "phone_num BIGINT, "
+        << "date_of_joining DATE, "
+        << "salary BIGINT, "
+        << "mgr_status VARCHAR(255) )"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    stmt.str("");
+    stmt << "INSERT INTO employees(name, addr_line1, addr_line2, addr_city, addr_state, phone_num, date_of_joining, salary, mgr_status) "
+        << "VALUES "
+        << "(\""<< employee1_name <<"\", \""<< employee1_addr_line1 <<"\", \""<< employee1_addr_line2 <<"\", \""<< employee1_addr_city <<"\", \""<< employee1_addr_city <<"\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), "<< employee1_salary <<", '"<< employee1_mgr_status <<"'), "
+        << "(\""<< employee2_name <<"\", \""<< employee2_addr_line1 <<"\", \""<< employee2_addr_line2 <<"\", \""<< employee2_addr_city <<"\", \""<< employee2_addr_city <<"\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), "<< employee2_salary <<", '"<< employee2_mgr_status <<"'), "
+        << "(\""<< employee3_name <<"\", \""<< employee3_addr_line1 <<"\", \""<< employee3_addr_line2 <<"\", \""<< employee3_addr_city <<"\", \""<< employee3_addr_city <<"\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), "<< employee3_salary <<", '"<< employee3_mgr_status <<"') "
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 }
 
 void database_seeders::purchases_seed()

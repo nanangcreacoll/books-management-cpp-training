@@ -79,6 +79,34 @@ private:
     string supplier2_addr_city = "Yogyakarta";
     string supplier2_addr_state = "DI Yogyakarta";
 
+    // employees seed
+    string employee1_name = "Rahmat";
+    string employee1_addr_line1 = "Jalan Puger 1";
+    string employee1_addr_line2 = "Perumahan Pugeran";
+    string employee1_addr_city = "Sleman";
+    string employee1_addr_state = "DI Yogyakarta";
+    long int employee1_salary = 2500000;
+    char employee1_mgr_status = 'T';
+
+    string employee2_name = "Bambang";
+    string employee2_addr_line1 = "Jalan Babarsari no. 22";
+    string employee2_addr_line2 = "Caturtunggal";
+    string employee2_addr_city = "Sleman";
+    string employee2_addr_state = "DI Yogyakarta";
+    long int employee2_salary = 2100000;
+    char employee2_mgr_status = 'F';
+
+    string employee3_name = "Afian";
+    string employee3_addr_line1 = "Jalan Perkutut no.3";
+    string employee3_addr_line2 = "Kuanino";
+    string employee3_addr_city = "Kupang";
+    string employee3_addr_state = "Nusa Tenggara Timur";
+    long int employee3_salary = 1500000;
+    char employee3_mgr_status = 'F';
+
+    // purchases seed
+    
+
 public:
     string sha256(const string&);
     void admin_seed();
