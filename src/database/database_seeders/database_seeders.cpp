@@ -162,7 +162,69 @@ void database_seeders::purchases_seed()
 
 void database_seeders::members_seed()
 {
+    stmt.str("");
+    stmt << "SHOW TABLES LIKE 'members';";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Members table found. Drop table.\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        stmt.str("");
+        stmt << "DROP TABLE members;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+    }
+
+    stmt.str("");
+    stmt << "CREATE TABLE members ( "
+        << "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+        << "name VARCHAR(255), "
+        << "addr_line1 VARCHAR(255), "
+        << "addr_line2 VARCHAR(255), "
+        << "addr_city VARCHAR(255), "
+        << "addr_state VARCHAR(255), "
+        << "phone_num BIGINT, "
+        << "beg_date DATE, "
+        << "end_date DATE, "
+        << "valid VARCHAR(255) )"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    stmt.str("");
+    stmt << "INSERT INTO members(name, addr_line1, addr_line2, addr_city, addr_state, phone_num, beg_date, end_date, valid) "
+        << "VALUES "
+        << "(\"" << member1_name << "\", \"" << member1_addr_line1 << "\", \"" << member1_addr_line2 << "\" , \"" << member1_addr_city << "\", \"" << member1_addr_state << "\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), Date_add(curdate(), INTERVAL 1 YEAR), 'valid'), "
+        << "(\"" << member2_name << "\", \"" << member2_addr_line1 << "\", \"" << member2_addr_line2 << "\" , \"" << member2_addr_city << "\", \"" << member2_addr_state << "\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), Date_add(curdate(), INTERVAL 1 YEAR), 'valid'), "
+        << "(\"" << member3_name << "\", \"" << member3_addr_line1 << "\", \"" << member3_addr_line2 << "\" , \"" << member3_addr_city << "\", \"" << member3_addr_state << "\", LPAD(FLOOR(RAND() * 999999999999), 12, '0'), CURDATE(), Date_add(curdate(), INTERVAL 1 YEAR), 'valid')"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 }
 
 void database_seeders::sales_seed()

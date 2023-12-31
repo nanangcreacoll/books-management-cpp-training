@@ -47,6 +47,25 @@ private:
     int book_price4 = 60000;
     int book_qty4 = 6;
 
+    // members seed
+    string member1_name = "Maria";
+    string member1_addr_line1 = "Jalan Siliwangi no. 31";
+    string member1_addr_line2 = "LLBK";
+    string member1_addr_city = "Kupang";
+    string member1_addr_state = "Nusa Tenggara Timur";
+
+    string member2_name = "Ivan";
+    string member2_addr_line1 = "Jalan Istana no. 32";
+    string member2_addr_line2 = "Soe";
+    string member2_addr_city = "Timor Tengah Selatan";
+    string member2_addr_state = "Nusa Tenggara Timur";
+
+    string member3_name = "Nima";
+    string member3_addr_line1 = "Jalan Ikan Terbang no.24";
+    string member3_addr_line2 = "Depok";
+    string member3_addr_city = "Sleman";
+    string member3_addr_state = "DI Yogyakarta";
+
 public:
     string sha256(const string&);
     void admin_seed();
