@@ -3,6 +3,8 @@
 #include <string>
 #include <mysql/mysql.h>
 #include <sstream>
+#include <thread>
+#include <chrono>
 
 // Definition
 #define HOST "127.0.0.1"
@@ -32,6 +34,14 @@ int main()
 	if (conn)
 	{
         database_seeders seeders;
+		cout << "Admin seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.admin_seed();
+
+		cout << "Books seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.books_seed();
+		
 	}
 	else
 	{
