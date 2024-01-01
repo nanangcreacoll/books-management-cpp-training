@@ -58,9 +58,9 @@ int main()
 		this_thread::sleep_for(chrono::seconds(2));
 		seeders.purchases_seed();
 
-		// cout << "Sales seeding ..." << endl;
-		// this_thread::sleep_for(chrono::seconds(2));
-		// seeders.sales_seed();
+		cout << "Sales seeding ..." << endl;
+		this_thread::sleep_for(chrono::seconds(2));
+		seeders.sales_seed();
 	}
 	else
 	{

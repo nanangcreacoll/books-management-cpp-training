@@ -121,7 +121,23 @@ private:
     int purchases3_sup_id = 2;
     int purchases3_qty = 6;
     int purchases3_estim_deliv = 8;
-    char purchases3_received = 'C'; 
+    char purchases3_received = 'C';
+
+    // sales seed
+    int sale1_member_id = 2;
+    int sale1_book_id = 1;
+    int sale1_qty = 3;
+    int sale1_amount = book_price1 * sale1_qty;
+
+    int sale2_member_id = 1;
+    int sale2_book_id = 3;
+    int sale2_qty = 6;
+    int sale2_amount = book_price3 * sale2_qty;
+
+    int sale3_member_id = 3;
+    int sale3_book_id = 4;
+    int sale3_qty = 2;
+    int sale3_amount = book_price3 * sale3_qty;
 
 public:
     string sha256(const string&);

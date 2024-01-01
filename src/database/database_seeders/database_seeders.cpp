@@ -471,7 +471,67 @@ void database_seeders::members_seed()
 
 void database_seeders::sales_seed()
 {
+    stmt.str("");
+    stmt << "SHOW TABLES LIKE 'sales';";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
+     res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Sales table found. Drop table.\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        stmt.str("");
+        stmt << "DROP TABLE sales;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+    }
+
+    stmt.str("");
+    stmt << "CREATE TABLE sales ( "
+        << "invoice_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+        << "member_id INT, "
+        << "book_id INT, "
+        << "qty INT, "
+        << "amount INT, "
+        << "date_sales DATE, "
+        << "FOREIGN KEY (member_id) REFERENCES members(id), "
+        << "FOREIGN KEY (book_id) REFERENCES books(id) )"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    stmt.str("");
+    stmt << "INSERT INTO sales(member_id, book_id, qty, amount, date_sales) "
+        << "VALUES "
+        << "("<< sale1_member_id <<", "<< sale1_book_id <<", "<< sale1_qty <<", "<< sale1_amount <<", CURDATE()), "
+        << "("<< sale2_member_id <<", "<< sale2_book_id <<", "<< sale2_qty <<", "<< sale2_amount <<", CURDATE()), "
+        << "("<< sale3_member_id <<", "<< sale3_book_id <<", "<< sale3_qty <<", "<< sale3_amount <<", CURDATE()) "
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 }
 
 database_seeders::database_seeders()
