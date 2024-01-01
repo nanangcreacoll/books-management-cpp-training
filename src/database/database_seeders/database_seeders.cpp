@@ -277,7 +277,69 @@ void database_seeders::employees_seed()
 
 void database_seeders::purchases_seed()
 {
+    stmt.str("");
+    stmt << "SHOW TABLES LIKE 'purchases';";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q)) 
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 
+    res_set = mysql_store_result(conn);
+
+    if ((row = mysql_fetch_row(res_set)) != NULL)
+    {
+        cout << "Purchases table found. Drop table.\n" << endl;
+        this_thread::sleep_for(chrono::seconds(2));
+
+        stmt.str("");
+        stmt << "DROP TABLE purchases;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+    }
+
+    stmt.str("");
+    stmt << "CREATE TABLE purchases ( "
+        << "order_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+        << "book_id INT, "
+        << "sup_id INT, "
+        << "qty INT, "
+        << "dt_ordered DATE, "
+        << "estim_deliv DATE, "
+        << "received CHAR, "
+        << "inv INT, "
+        << "FOREIGN KEY (book_id) REFERENCES books(id), "
+        << "FOREIGN KEY (sup_id) REFERENCES suppliers(id) )"
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
+
+    stmt.str("");
+    stmt << "INSERT INTO purchases(book_id, sup_id, qty, dt_ordered, estim_deliv, received) "
+        << "VALUES "
+        << "("<< purchases1_book_id <<", "<< purchases1_sup_id <<", "<< purchases1_qty <<", CURDATE(), DATE_ADD(CURDATE(), INTERVAL "<< purchases1_estim_deliv << " DAY), '"<< purchases1_received <<"'), "
+        << "("<< purchases2_book_id <<", "<< purchases2_sup_id <<", "<< purchases2_qty <<", CURDATE(), DATE_ADD(CURDATE(), INTERVAL "<< purchases2_estim_deliv << " DAY), '"<< purchases2_received <<"'), "
+        << "("<< purchases3_book_id <<", "<< purchases3_sup_id <<", "<< purchases3_qty <<", CURDATE(), DATE_ADD(CURDATE(), INTERVAL "<< purchases3_estim_deliv << " DAY), '"<< purchases3_received <<"') "
+        << ";";
+    query = stmt.str();
+    q = query.c_str();
+    if (mysql_query(conn, q))
+    {
+        cout << "Query Error: " << mysql_error(conn) << endl;
+        return;
+    }
 }
 
 void database_seeders::members_seed()

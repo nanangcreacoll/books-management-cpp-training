@@ -105,7 +105,23 @@ private:
     char employee3_mgr_status = 'F';
 
     // purchases seed
-    
+    int purchases1_book_id = 1;
+    int purchases1_sup_id = 2;
+    int purchases1_qty = 4;
+    int purchases1_estim_deliv = 5;
+    char purchases1_received = 'T'; 
+
+    int purchases2_book_id = 4;
+    int purchases2_sup_id = 1;
+    int purchases2_qty = 10;
+    int purchases2_estim_deliv = 3;
+    char purchases2_received = 'F'; 
+
+    int purchases3_book_id = 2;
+    int purchases3_sup_id = 2;
+    int purchases3_qty = 6;
+    int purchases3_estim_deliv = 8;
+    char purchases3_received = 'C'; 
 
 public:
     string sha256(const string&);
