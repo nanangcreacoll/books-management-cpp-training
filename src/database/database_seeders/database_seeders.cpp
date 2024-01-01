@@ -40,7 +40,7 @@ void database_seeders::admin_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Admin table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "DROP TABLE admin;";
@@ -99,7 +99,7 @@ void database_seeders::books_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Books table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "SET foreign_key_checks = 0;";
@@ -182,7 +182,7 @@ void database_seeders::suppliers_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Suppliers table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
         
         stmt.str("");
         stmt << "SET foreign_key_checks = 0;";
@@ -265,7 +265,7 @@ void database_seeders::employees_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Employees table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "DROP TABLE employees;";
@@ -332,7 +332,7 @@ void database_seeders::purchases_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Purchases table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "DROP TABLE purchases;";
@@ -399,7 +399,7 @@ void database_seeders::members_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Members table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "SET foreign_key_checks = 0;";
@@ -486,7 +486,7 @@ void database_seeders::sales_seed()
     if ((row = mysql_fetch_row(res_set)) != NULL)
     {
         cout << "Sales table found. Drop table.\n" << endl;
-        this_thread::sleep_for(chrono::seconds(2));
+        // this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
         stmt << "DROP TABLE sales;";

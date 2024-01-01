@@ -35,31 +35,31 @@ int main()
 	{
         database_seeders seeders;
 		cout << "Admin seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.admin_seed();
 
 		cout << "Books seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.books_seed();
 
 		cout << "Suppliers seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.suppliers_seed();
 
 		cout << "Members seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.members_seed();
 		
 		cout << "Employees seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.employees_seed();
 
 		cout << "Purchases seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.purchases_seed();
 
 		cout << "Sales seeding ..." << endl;
-		this_thread::sleep_for(chrono::seconds(2));
+		// this_thread::sleep_for(chrono::seconds(2));
 		seeders.sales_seed();
 	}
 	else
