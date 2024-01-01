@@ -102,7 +102,27 @@ void database_seeders::books_seed()
         this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
+        stmt << "SET foreign_key_checks = 0;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        stmt.str("");
         stmt << "DROP TABLE books;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+        
+        stmt.str("");
+        stmt << "SET foreign_key_checks = 1;";
         query = stmt.str();
         q = query.c_str();
         if (mysql_query(conn, q)) 
@@ -163,9 +183,29 @@ void database_seeders::suppliers_seed()
     {
         cout << "Suppliers table found. Drop table.\n" << endl;
         this_thread::sleep_for(chrono::seconds(2));
+        
+        stmt.str("");
+        stmt << "SET foreign_key_checks = 0;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
 
         stmt.str("");
         stmt << "DROP TABLE suppliers;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        stmt.str("");
+        stmt << "SET foreign_key_checks = 1;";
         query = stmt.str();
         q = query.c_str();
         if (mysql_query(conn, q)) 
@@ -362,7 +402,27 @@ void database_seeders::members_seed()
         this_thread::sleep_for(chrono::seconds(2));
 
         stmt.str("");
+        stmt << "SET foreign_key_checks = 0;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        stmt.str("");
         stmt << "DROP TABLE members;";
+        query = stmt.str();
+        q = query.c_str();
+        if (mysql_query(conn, q)) 
+        {
+            cout << "Query Error: " << mysql_error(conn) << endl;
+            return;
+        }
+
+        stmt.str("");
+        stmt << "SET foreign_key_checks = 1;";
         query = stmt.str();
         q = query.c_str();
         if (mysql_query(conn, q)) 
