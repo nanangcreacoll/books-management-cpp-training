@@ -7,8 +7,8 @@
 #include <unistd.h>
 
 // Definition
-#define HOST "127.0.0.1"
-#define MYSQL_USER "root"
+#define HOST "localhost"
+#define MYSQL_USER "nanangcreacoll"
 #define MYSQL_PASS "creacoll"
 #define DATABASE "book_management"
 #define MYSQL_PORT 3306
@@ -65,7 +65,7 @@ int main()
 		system("clear");
 		cout << "Error while connecting to database." << endl << "Contact tech expert." << endl;
 		cin.get();
-    }
+	}
 	return 0;
 }
 
@@ -100,6 +100,7 @@ void login_menu()
 	cout << "\t3. EXIT" << endl << endl << endl;
 	cout << "Enter your choice: ";
 	cin >> c;
+	if (cin.eof()) exit(0);
 
 	switch (c)
 	{
@@ -107,6 +108,7 @@ void login_menu()
 		system("clear");
 		cout << "\tUsername: ";
 		cin >> input_username;
+		if (cin.eof()) exit(0);
 		cout << "\tPassword: ";
 		input_password = get_password();
 
@@ -123,7 +125,7 @@ void login_menu()
 		{
 			cout << endl << endl << "Username or password is not valid." << endl << endl;
 			cout << "Press any key ...";
-    		cin.get();
+			cin.get();
 			system("clear");
 			login_menu();
 			break;
@@ -132,6 +134,7 @@ void login_menu()
 		system("clear");
 		cout << "\tUsername: ";
 		cin >> input_username;
+		if (cin.eof()) exit(0);
 		cout << "\tPassword: ";
 		input_password = get_password();
 
@@ -179,7 +182,7 @@ void login_menu()
 
 void main_menu()
 {
-    int c;
+	int c;
 
 	cout << "Admin: " << administrator.get_username() << endl;
 	cout << "*************************************************" << endl;
@@ -195,37 +198,38 @@ void main_menu()
 	cout << "\t8. EXIT" << endl << endl;
 	cout << "Enter Your Choice: ";
 	cin >> c;
+	if (cin.eof()) exit(0);
 	switch (c)
 	{
 		case 1:
 			system("clear");
 			book_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 2:
 			system("clear");
 			supplier_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 3:
 			system("clear");
 			purchase_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 4:
 			system("clear");
 			employee_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 5:
 			system("clear");
 			member_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 6:
 			system("clear");
 			sale_menu();
-    		cin.get();
+			cin.get();
 			break;
 		case 7:
 			system("clear");
@@ -265,6 +269,7 @@ void book_menu()
 	cout << "\t6. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice: ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:
@@ -315,6 +320,7 @@ void supplier_menu()
 	cout << "\t5. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:
@@ -361,6 +367,7 @@ void purchase_menu()
 	cout << "   5. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:
@@ -408,6 +415,7 @@ void employee_menu()
 	cout << "\t6. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:
@@ -457,6 +465,7 @@ void member_menu()
 	cout << "\t3. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:
@@ -492,6 +501,7 @@ void sale_menu()
 	cout << "\t3. RETURN TO MAIN MENU" << endl << endl << endl;
 	cout << "Enter Your Choice : ";
 	cin >> c;
+	if (cin.eof()) return;
 	switch (c)
 	{
 		case 1:

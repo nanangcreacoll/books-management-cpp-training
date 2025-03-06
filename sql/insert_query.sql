@@ -1,4 +1,4 @@
--- Active: 1702918408133@@127.0.0.1@3306@book_management
+-- Active: 1732972367432@@127.0.0.1@3306@book_management
 INSERT INTO books(name,author,price,qty) values('Buku Pintar Membuat Cake', 'Diah Surjani Ananto', 42000, 5);
 
 INSERT INTO employees(
