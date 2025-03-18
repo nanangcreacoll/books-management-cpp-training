@@ -8,7 +8,7 @@
 #include <limits>
 
 //struct
-#include "../../dateStruct.hpp"
+#include "date.hpp"
 
 using namespace std;
 

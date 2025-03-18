@@ -10,7 +10,7 @@
 using namespace std;
 
 //struct
-#include "../../dateStruct.hpp"
+#include "date.hpp"
 
 extern MYSQL *conn;
 extern MYSQL_RES *res_set;

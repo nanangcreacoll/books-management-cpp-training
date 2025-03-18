@@ -6,23 +6,17 @@
 #include <termios.h>
 #include <unistd.h>
 
-// Definition
-#define HOST "localhost"
-#define MYSQL_USER "nanangcreacoll"
-#define MYSQL_PASS "creacoll"
-#define DATABASE "book_management"
-#define MYSQL_PORT 3306
+#include "database.h"
+
+#include "books/books.hpp"
+#include "suppliers/suppliers.hpp"
+#include "purchases/purchases.hpp"
+#include "employees/employees.hpp"
+#include "members/members.hpp"
+#include "sales/sales.hpp"
+#include "admin/admin.hpp"
 
 using namespace std;
-
-//classes
-#include "class/books/books.hpp"
-#include "class/suppliers/suppliers.hpp"
-#include "class/purchases/purchases.hpp"
-#include "class/employees/employees.hpp"
-#include "class/members/members.hpp"
-#include "class/sales/sales.hpp"
-#include "class/admin/admin.hpp"
 
 //Global Variable
 MYSQL* conn;
@@ -167,6 +161,7 @@ void login_menu()
 			break;
 		}
 	case 3:
+		system("clear");
 		exit(0);
 	default:
 		system("clear");

@@ -10,3 +10,5 @@
 *.out
 
 /try
+/build
+/include/database.h

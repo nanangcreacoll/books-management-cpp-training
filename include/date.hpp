@@ -1,5 +1,5 @@
-#ifndef __DATE_STRUCT
-#define __DATE_STRUCT
+#ifndef __DATE
+#define __DATE
 
 typedef struct
 {

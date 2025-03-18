@@ -6,12 +6,7 @@
 #include <thread>
 #include <chrono>
 
-// Definition
-#define HOST "127.0.0.1"
-#define MYSQL_USER "nanangcreacoll"
-#define MYSQL_PASS "creacoll"
-#define DATABASE "book_management"
-#define MYSQL_PORT 3306
+#include "database.h"
 
 using namespace std;
 
